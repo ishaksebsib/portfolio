@@ -6,40 +6,38 @@ import { useTheme } from "next-themes";
 
 export default function NavBar({}) {
   const [isMenu, setIsMenu] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { systemTheme, theme, setTheme } = useTheme();
   const toogleMenu = () => {
     setIsMenu(!isMenu);
+  };
+  const renderThemeChanger = () => {
+    const currentTheme = theme === "system" ? systemTheme : theme;
+
+    if (currentTheme === "dark") {
+      return (
+        <Icon.Sun
+          size={25}
+          className="stroke-warmer hover:stroke-mediumer"
+          onClick={() => setTheme("light")}
+        />
+      );
+    } else {
+      return (
+        <Icon.Moon
+          size={25}
+          color={"#f77f05"}
+          className="hover:stroke-warmer"
+          onClick={() => setTheme("dark")}
+        />
+      );
+    }
   };
 
   return (
     <div>
       <nav className=" fixed top-0 w-screen h-16 bg-bgcolor  dark:bg-black flex justify-between items-center px-8 z-10">
-        {theme == "dark" && (
-          <i
-            className=""
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-          >
-            {" "}
-            <Icon.Sun
-              size={25}
-              className="stroke-warmer hover:stroke-mediumer"
-            />
-          </i>
-        )}
-
-        {theme == "light" && (
-          <i className="" onClick={() => setTheme("dark")}>
-            {" "}
-            <Icon.Moon
-              size={25}
-              color={"#f77f05"}
-              className="hover:stroke-warmer"
-            />
-          </i>
-        )}
-
         {/* SIDE BAR MENU  */}
-
+        {renderThemeChanger()}
         <div className=" text-warmer items-center hidden md:flex md:gap-10 font-roboto text-base ">
           <Link
             activeClass="active"

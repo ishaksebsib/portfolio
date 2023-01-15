@@ -8,8 +8,9 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html className="dark">
+      <Html class="dark">
         <Head>
+          <link rel="manifest" href="/site.webmanifest" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
