@@ -2,19 +2,41 @@ import Image from "next/image";
 import { Link } from "react-scroll";
 import * as Icon from "react-feather";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 
 export default function NavBar({}) {
   const [isMenu, setIsMenu] = useState(false);
+  const { theme, setTheme } = useTheme();
   const toogleMenu = () => {
     setIsMenu(!isMenu);
   };
 
   return (
     <div>
-      <nav className=" fixed top-0 w-screen h-16 bg-bgcolor flex justify-between items-center px-8 z-10">
-        <div>
-          <Image src={"./n1.svg"} width={50} height={50} alt="logo" />
-        </div>
+      <nav className=" fixed top-0 w-screen h-16 bg-bgcolor  dark:bg-black flex justify-between items-center px-8 z-10">
+        {theme == "dark" && (
+          <i
+            className=""
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          >
+            {" "}
+            <Icon.Sun
+              size={25}
+              className="stroke-warmer hover:stroke-mediumer"
+            />
+          </i>
+        )}
+
+        {theme == "light" && (
+          <i className="" onClick={() => setTheme("dark")}>
+            {" "}
+            <Icon.Moon
+              size={25}
+              color={"#f77f05"}
+              className="hover:stroke-warmer"
+            />
+          </i>
+        )}
 
         {/* SIDE BAR MENU  */}
 
@@ -56,8 +78,7 @@ export default function NavBar({}) {
         <button className="md:hidden">
           <Icon.BarChart
             size={35}
-            color={"#f77f05"}
-            className="-rotate-90"
+            className="-rotate-90 stroke-mediumer hover:stroke-warmer dark:stroke-warmer"
             onClick={toogleMenu}
           />
         </button>
@@ -69,7 +90,11 @@ export default function NavBar({}) {
         <div className="fixed flex a~ justify-end top-0 z-20 w-[100%] h-screen">
           <div className="flex flex-col items-center justify-center gap-14 w-[50%] bg-black text-white">
             <button onClick={toogleMenu}>
-              <Icon.X size={35} color={"#f77f05"} className="-rotate-90" />
+              <Icon.X
+                size={35}
+                color={"#f77f05"}
+                className="-rotate-90 hover:stroke-warmer"
+              />
             </button>
             <Link
               activeClass="active"

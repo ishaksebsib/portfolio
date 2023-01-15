@@ -4,7 +4,7 @@ export default function GetInTouch({}) {
   return (
     <div
       id="getintouch"
-      className=" h-screen bg-bgcolor flex flex-col gap-8 items-center justify-center font-inter md:gap-12 lg:gap-14"
+      className="bg-bgcolor dark:bg-black h-screen  flex flex-col gap-8 items-center justify-center font-inter md:gap-12 lg:gap-14"
     >
       <h1 className=" font-bolder text-4xl text-mediumer md:text-5xl lg:text-6xl">
         Get In Touch

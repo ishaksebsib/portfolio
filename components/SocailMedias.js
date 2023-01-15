@@ -21,7 +21,7 @@ export default function SocailMedias({}) {
         </svg>
       </Link>
 
-      <Link href={"/"}>
+      <Link href={"https://github.com/ishaksebsib"}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
