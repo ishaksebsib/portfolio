@@ -8,7 +8,6 @@ module.exports = {
     extend: {
       fontFamily: {
         bolder: ["Rubik Bubbles", "sans-serif"],
-        fredo: ["cursive", "sans-serif"],
         inter: ["Inter", "sans-serif"],
         roboto: ["Roboto", "sans-serif"],
       },

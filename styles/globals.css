@@ -13,6 +13,11 @@ body {
   background: #f5f5f7;
 }
 
+.active {
+  border-bottom-width: 2px;
+  color: rgb(235 138 40);
+}
+
 .roboto {
   font-family: "Rubik Bubbles";
 }
@@ -34,24 +39,58 @@ body {
     opacity: 0;
   }
 }
+
+.typewriter {
+  white-space: nowrap;
+}
+
+@media (min-width: 390px) {
+  .typewriter {
+    font-size: 22px;
+  }
+  .smallerh1 {
+    font-size: 28px;
+  }
+  .smallerwork {
+    font-size: 22px;
+  }
+  .smallerwidth {
+    width: 75%;
+  }
+  .smallerpw {
+    width: 260px;
+  }
+}
+
+/* SCROL BAR  */
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f5f5f7;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8892b0;
+}
+
+/* END OF SCROL BAR  */
+
 /* END .... TEXT TYPE WRITER CSS   */
 
-/*
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* PROJECT CARD HOVER EFFECT  */
 
-* {
-  box-sizing: border-box;
+.project1:hover .carder {
+  display: flex;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
-} */
