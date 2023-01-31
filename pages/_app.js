@@ -1,17 +1,27 @@
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import Head from "next/head";
+import { useEffect, useState } from "react";
+import Loading from "../components/Loading";
 
 function MyApp({ Component, pageProps }) {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
   return (
     <>
-      {" "}
       <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <title>Loading</title>
       </Head>
-      <ThemeProvider enableSystem={true} attribute="class">
-        <Component {...pageProps} />
-      </ThemeProvider>
+      {loading ? (
+        <Loading />
+      ) : (
+        <ThemeProvider enableSystem={true} attribute="class">
+          <Component {...pageProps} />
+        </ThemeProvider>
+      )}
     </>
   );
 }

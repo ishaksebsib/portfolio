@@ -7,18 +7,24 @@ import AboutMe from "../components/pages/home/AboutMe";
 import GetInTouch from "../components/pages/home/GetInTouch";
 import Footer from "../components/Footer";
 import Skills from "../components/pages/home/Skills";
+import Head from "next/head";
 
 export default function Home() {
   return (
-    <div className=" bg-bgcolor w-full ">
-      <NavBar />
-      <SocailMedias />
-      <HomePage />
-      <WorkPage />
-      <Skills />
-      <AboutMe />
-      <GetInTouch />
-      <Footer />
-    </div>
+    <>
+      <Head>
+        <title>Portfolio</title>
+      </Head>
+      <div className=" bg-bgcolor w-full ">
+        <NavBar />
+        <SocailMedias />
+        <HomePage />
+        <WorkPage />
+        <Skills />
+        <AboutMe />
+        <GetInTouch />
+        <Footer />
+      </div>
+    </>
   );
 }
