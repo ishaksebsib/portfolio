@@ -108,3 +108,17 @@ body {
     font-size: 1.5em;
   }
 }
+
+@media (max-width: 400px) {
+  .mobilepjttitle {
+    margin-top: 0.5rem /* 12px */;
+    margin-bottom: 0.5rem /* 12px */;
+    margin-left: 2rem /* 64px */;
+    font-size: 1em;
+    max-width: 20em;
+  }
+  .mpj {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

@@ -8,11 +8,11 @@ export default function WorkPage({}) {
           id="work"
           className="font-inter mt-8 mb-10 grid gap-4 md:grid-cols-2 md:gap-6  items-center "
         >
-          <div className=" mx-16 my-6 md:col-span-2 md:mx-0">
-            <h1 className="mobiletitle text-2xl smallerwork text-mediumer md:text-4xl ">
+          <div className="mpj mx-16 my-6 md:col-span-2 md:mx-0">
+            <h1 className="mobilepjttitle text-2xl smallerwork text-mediumer md:text-4xl ">
               RECENT WORKS
             </h1>
-            <p className="mobiletitle text-4xl my-3 smallerwork text-slate-500 font-light md:max-w-4xl md:text-5xl md:text-left md:font-thin">
+            <p className="mobilepjttitle text-4xl my-3 smallerwork text-slate-500 font-light md:max-w-4xl md:text-5xl md:text-left md:font-thin">
               Here are some of my projects i did lately. Feel free to check them
               out.
             </p>
