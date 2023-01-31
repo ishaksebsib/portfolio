@@ -91,3 +91,20 @@ body {
 .project1:hover .carder {
   display: flex;
 }
+
+/* MOBILE RESPONSIVE NES */
+
+@media (max-width: 420px) {
+  .mobile {
+    gap: 1rem;
+    font-size: 0.8rem /* 18px */;
+    margin-left: 3rem /* 96px */;
+    margin-right: 3rem /* 96px */;
+  }
+  .mobileh1 {
+    font-size: 0.8em;
+  }
+  .mobiletitle {
+    font-size: 1.5em;
+  }
+}

@@ -9,7 +9,7 @@ export default function GetInTouch({}) {
       <h1 className=" font-bolder text-4xl text-mediumer md:text-5xl lg:text-6xl">
         Get In Touch
       </h1>
-      <p className=" max-w-sm text-center md:max-w-lg md:text-lg lg:text-xl">
+      <p className="mobile max-w-sm text-center md:max-w-lg md:text-lg lg:text-xl">
         Although I’m not currently looking for any new opportunities, my inbox
         is always open. Whether you have a question or just want to say hi, I’ll
         try my best to get back to you!

@@ -6,17 +6,17 @@ export default function HomePage({}) {
     <div className="bg-bgcolor dark:bg-black">
       <section
         id="home"
-        className="flex flex-col h-screen gap-8 justify-center items-start font-roboto mx-24  md:mx-32 lg:mx-48 "
+        className=" mobile flex flex-col h-screen gap-8 justify-center items-start font-roboto mx-24  md:mx-32 lg:mx-48 "
       >
-        <h1 className=" text-mediumer font-inter text-sm font-semibold md:text-lg  ">
+        <h1 className="mobileh1 text-mediumer font-inter text-sm font-semibold md:text-lg  ">
           {" "}
           Hi, my name is{" "}
         </h1>
-        <h1 className="smallerh1 text-warmer text-4xl font-bolder md:text-5xl lg:text-6xl">
+        <h1 className="mobiletitle smallerh1 text-warmer text-4xl font-bolder md:text-5xl lg:text-6xl">
           {" "}
           Ishak Sebsib.
         </h1>
-        <h1 className="typewriter text-lighter font-inter font-bold text-3xl md:text-5xl lg:text-6xl">
+        <h1 className="mobiletitle typewriter text-lighter font-inter font-bold text-3xl md:text-5xl lg:text-6xl">
           I am{" "}
           <ReactRotatingText
             items={[

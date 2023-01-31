@@ -19,7 +19,7 @@ export default function AboutMe({}) {
             <h1 className=" mx-4 font-bold">About Me</h1>
             <div className=" w-[20%] bg-mediumer h-[0.1em]" />
           </div>
-          <p className="my-6 mx-4 text-justify">
+          <p className="mobile my-6 mx-4 text-justify">
             Hello! My name is Brittany and I enjoy creating things that live on
             the internet. My interest in web development started back in 2012
             when I decided to try editing custom Tumblr themes — turns out
