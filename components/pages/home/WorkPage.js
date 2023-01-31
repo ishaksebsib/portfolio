@@ -17,7 +17,7 @@ export default function WorkPage({}) {
               out.
             </p>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16  rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16  rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/1.jpg" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
@@ -25,7 +25,7 @@ export default function WorkPage({}) {
               </h1>
             </Link>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/2.png" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
@@ -33,7 +33,7 @@ export default function WorkPage({}) {
               </h1>
             </Link>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/3.jpg" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
@@ -41,7 +41,7 @@ export default function WorkPage({}) {
               </h1>
             </Link>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/4.png" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
@@ -49,7 +49,7 @@ export default function WorkPage({}) {
               </h1>
             </Link>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/1.png" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
@@ -57,7 +57,7 @@ export default function WorkPage({}) {
               </h1>
             </Link>
           </div>
-          <div className="mobile smallerwidth w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
+          <div className="mobile w-[80%] mx-16 rounded-lg transition hover:-translate-y-2 md:mx-0 md:w-auto ">
             <Link href={""} className="project1 relative">
               <img src="/projects/2.jpg" className=" rounded-md" />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#00000080] text-white w-[100%] text-center">
