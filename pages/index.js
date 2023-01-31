@@ -13,7 +13,6 @@ export default function Home() {
     <div className=" bg-bgcolor w-full ">
       <NavBar />
       <SocailMedias />
-      <UpAndDownArrow />
       <HomePage />
       <WorkPage />
       <Skills />

@@ -4,13 +4,13 @@ export default function Skills({}) {
     subtitle: "My Top Skills",
     skills_content: [
       {
-        name: "React.js + React Native",
+        name: "React.js/Next.js + React Native",
         para: "Intermediate",
         logo: "react",
       },
       {
         name: "Svelte.js",
-        para: "Intermediate",
+        para: "Beginner",
         logo: "svelte",
       },
       {

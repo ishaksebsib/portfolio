@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Link } from "react-scroll";
+import toast, { Toaster } from "react-hot-toast";
+
 import * as Icon from "react-feather";
 import { useState } from "react";
 import { useTheme } from "next-themes";
@@ -35,6 +37,8 @@ export default function NavBar({}) {
 
   return (
     <div>
+      <Toaster />
+
       <nav className=" fixed top-0 w-screen h-16 bg-bgcolor  dark:bg-black flex justify-between items-center px-8 z-10">
         {/* SIDE BAR MENU  */}
         {renderThemeChanger()}

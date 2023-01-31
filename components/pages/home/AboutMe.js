@@ -1,6 +1,8 @@
 import * as Icon from "react-feather";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function AboutMe({}) {
+  const oppeningEmail = () => toast("Opening Email 😊");
   return (
     <div className="bg-bgcolor dark:bg-black w-[100%] h-screen">
       <div
@@ -20,15 +22,27 @@ export default function AboutMe({}) {
             <div className=" w-[20%] bg-mediumer h-[0.1em]" />
           </div>
           <p className="mobile my-6 mx-4 text-justify">
-            Hello! My name is Brittany and I enjoy creating things that live on
-            the internet. My interest in web development started back in 2012
-            when I decided to try editing custom Tumblr themes — turns out
-            hacking together a custom reblog button taught me a lot about HTML &
-            CSS! Fast-forward to today, and I’ve had the privilege of working at
-            an advertising agency, a start-up, a huge corporation, and a
-            student-led design studio. My main focus these days is building
-            accessible, inclusive products and digital experiences at
-            Upstatement for a variety of clients.
+            Hello! My name is Ishak and I enjoy creating things that live on the
+            internet. My interest in web development started back in 2018
+            Fast-forward to today My Dream comes true and i work on many
+            projects with my clients and My greatest strength is my ability to
+            collaborate with clients and understand their needs. I take pride in
+            my ability to turn complex concepts into simple and intuitive
+            solutions, and I'm committed to delivering projects that exceed
+            expectations. So if you're looking for a talented and dedicated
+            Full-Stack Developer and UI/UX Designer, look no further. Let's work
+            together to bring your vision to life. say hello{" "}
+            <a
+              href="mailto:ishaksebsib@gmail.com"
+              className="hover:cursor-pointer"
+              onClick={oppeningEmail}
+            >
+              @Email
+            </a>
+            <a href="https://t.me/darkmodeman" className="hover:cursor-pointer">
+              {" "}
+              @Telegram
+            </a>
           </p>
         </div>
       </div>

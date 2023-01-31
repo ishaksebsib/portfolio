@@ -20,18 +20,19 @@ export default function HomePage({}) {
           I am{" "}
           <ReactRotatingText
             items={[
-              "ui/ux designer",
               "frontend developer",
               "backend developer",
+              "ui/ux designer",
               "Programmer",
             ]}
           />
         </h1>
 
         <p className=" smallerpw text-warmlight max-w-md my-3 font-roboto ">
-          I’m a software engineer specializing in building (and occasionally
-          designing) exceptional digital experiences. Currently, I’m focused on
-          building accessible, human-centered products at Upstatement.
+          Bringing creativity and technical expertise to the table as a
+          full-stack developer and UI/UX designer. Crafting user-centered
+          digital experiences with a focus on efficiency and scalability. Ready
+          to turn your vision into a stunning reality? Let's work together
         </p>
 
         <Link activeClass="active" to="work" spy={true} smooth={true}>

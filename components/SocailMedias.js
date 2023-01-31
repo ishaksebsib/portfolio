@@ -1,9 +1,12 @@
 import Link from "next/link";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function SocailMedias({}) {
+  const oppeningEmail = () => toast("Opening Email 😊");
+
   return (
     <div className=" hidden md:flex md:flex-col md:items-center md:gap-4 md:fixed md:left-0  md:px-10 md:top-2/3">
-      <Link href={"/"}>
+      <Link href="https://t.me/darkmodeman">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -38,7 +41,7 @@ export default function SocailMedias({}) {
         </svg>
       </Link>
 
-      <Link href={"/"}>
+      <Link href={"https://www.instagram.com/ishak_bi0/"}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -57,7 +60,11 @@ export default function SocailMedias({}) {
         </svg>
       </Link>
 
-      <Link href={"/"} className="">
+      <Link
+        href="mailto:ishaksebsib@gmail.com"
+        className=""
+        onClick={oppeningEmail}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
