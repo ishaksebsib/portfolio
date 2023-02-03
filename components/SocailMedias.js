@@ -41,7 +41,7 @@ export default function SocailMedias({}) {
         </svg>
       </Link>
 
-      <Link href={"https://www.instagram.com/ishak_bi0/"}>
+      <Link href={"https://www.instagram.com/codewithiso/"}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
