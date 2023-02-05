@@ -11,7 +11,7 @@ import Head from "next/head";
 
 export default function Home() {
   return (
-    <>
+    <div className="fitscreen">
       <Head>
         <title>Portfolio</title>
       </Head>
@@ -25,6 +25,6 @@ export default function Home() {
         <GetInTouch />
         <Footer />
       </div>
-    </>
+    </div>
   );
 }

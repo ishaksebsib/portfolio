@@ -3,7 +3,7 @@ import { Link } from "react-scroll";
 
 export default function HomePage({}) {
   return (
-    <div className="bg-bgcolor dark:bg-black">
+    <div className="bg-bgcolor dark:bg-black w-[100%]">
       <section
         id="home"
         className=" mobile flex flex-col h-screen gap-8 justify-center items-start font-roboto mx-24  md:mx-32 lg:mx-48 "
