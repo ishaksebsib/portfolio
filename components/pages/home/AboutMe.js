@@ -1,5 +1,7 @@
 import * as Icon from "react-feather";
 import toast, { Toaster } from "react-hot-toast";
+import Image from "next/image";
+import avatarlogo from "../../../public/profile/myavatarcircle.png";
 
 export default function AboutMe({}) {
   const oppeningEmail = () => toast("Opening Email 😊");
@@ -9,9 +11,9 @@ export default function AboutMe({}) {
         id="aboutme"
         className="flex flex-col h-screen justify-center items-center font-inter border-slate-300 md:flex-row md:gap-10  lg:gap-28 "
       >
-        <img
-          src="/profile/myavatarcircle.png"
-          alt="profile photo"
+        <Image
+          src={avatarlogo}
+          alt="ishak sebsib avatar"
           className="my-10 w-60 lg:w-80 "
         />
 
