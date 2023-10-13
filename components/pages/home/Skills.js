@@ -1,3 +1,12 @@
+import Image from "next/image";
+
+import reactlogo from "../../../public/skills/react.png";
+import sveltelogo from "../../../public/skills/svelte.png";
+import nodelogo from "../../../public/skills/node.png";
+import firebaselogo from "../../../public/skills/firebase.png";
+import figmalogo from "../../../public/skills/figma.png";
+import tailwindlogo from "../../../public/skills/tailwind.png";
+
 export default function Skills({}) {
   const skills = {
     title: "EXPERIENCES",
@@ -6,32 +15,32 @@ export default function Skills({}) {
       {
         name: "React.js/Next.js + React Native",
         para: "Intermediate",
-        logo: "react",
+        logo: reactlogo,
       },
       {
         name: "Svelte.js",
         para: "Beginner",
-        logo: "svelte",
+        logo: sveltelogo,
       },
       {
         name: "Node.js + Express",
         para: "Advanced",
-        logo: "node",
+        logo: nodelogo,
       },
       {
         name: "Firebase",
         para: "Advanced",
-        logo: "firebase",
+        logo: firebaselogo,
       },
       {
         name: "Figma",
         para: "Intermediate",
-        logo: "figma",
+        logo: figmalogo,
       },
       {
         name: "Tailwind.css",
         para: "Adcanced",
-        logo: "tailwind",
+        logo: tailwindlogo,
       },
     ],
   };
@@ -67,9 +76,9 @@ export default function Skills({}) {
                   gap-5 p-5 max-w-sm rounded-md border-2 border-slate-200"
               >
                 <div>
-                  <img
-                    src={`./skills/${skill.logo}.png`}
-                    alt="..."
+                  <Image
+                    src={skill.logo}
+                    alt={`skills logo ${skill.name}`}
                     className="w-10 h-15 group-hover:scale-125 duration-200"
                   />
                 </div>

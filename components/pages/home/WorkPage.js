@@ -1,5 +1,15 @@
 import Link from "next/link";
 import * as Icon from "react-feather";
+import Image from "next/image";
+
+// local images
+import project1 from "../../../public/projects/1.jpg";
+import project2 from "../../../public/projects/2.png";
+import project3 from "../../../public/projects/3.jpg";
+import project4 from "../../../public/projects/4.png";
+import project5 from "../../../public/projects/5.png";
+import project6 from "../../../public/projects/6.png";
+
 export default function WorkPage({}) {
   return (
     <div className="bg-bgcolor dark:bg-black">
@@ -22,7 +32,11 @@ export default function WorkPage({}) {
               href={"https://shop-isotop.vercel.app/"}
               className="project1 relative"
             >
-              <img src="/projects/1.jpg" className=" rounded-md" />
+              <Image
+                src={project1}
+                alt="sopping app project image "
+                className=" rounded-md"
+              />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center text-sm">
                 clothe shopping app, built with Next.js, Firebase, Tailwind CSS,
                 and more. with features like authentication,cart,wishlist and a
@@ -35,7 +49,12 @@ export default function WorkPage({}) {
               href={"https://islamic-library.vercel.app/"}
               className="project1 relative"
             >
-              <img src="/projects/2.png" className=" rounded-md" />
+              <Image
+                src={project2}
+                alt="audio lib app project image "
+                className=" rounded-md"
+              />
+
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center">
                 audio library, packed with high-quality islamic sound clips
                 Experience fast performance and a user-friendly interface. Start
@@ -48,7 +67,12 @@ export default function WorkPage({}) {
               href={"https://dev-t0.vercel.app/"}
               className="project1 relative"
             >
-              <img src="/projects/3.jpg" className=" rounded-md" />
+              <Image
+                src={project3}
+                alt="devto clone project image "
+                className=" rounded-md"
+              />
+
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center">
                 social platform for developers, designed to connect and empower
                 the tech community. With features inspired by dev.to Click to
@@ -61,7 +85,11 @@ export default function WorkPage({}) {
               href={"https://live-cryptocurrency-data.vercel.app/"}
               className="project1 relative"
             >
-              <img src="/projects/4.png" className=" rounded-md" />
+              <Image
+                src={project4}
+                alt="crpto app project image "
+                className=" rounded-md"
+              />
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center text-sm">
                 web app for cryptocurrency traders and investors. With real-time
                 market data from the Binance API, this website offers a complete
@@ -77,7 +105,12 @@ export default function WorkPage({}) {
               }
               className="project1 relative"
             >
-              <img src="/projects/5.png" className=" rounded-md" />
+              <Image
+                src={project5}
+                alt="Ui/ux project image "
+                className=" rounded-md"
+              />
+
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center">
                 Rental website UI/UX Design using Figma Click to explore
               </h1>
@@ -90,7 +123,12 @@ export default function WorkPage({}) {
               }
               className="project1 relative"
             >
-              <img src="/projects/6.png" className=" rounded-md" />
+              <Image
+                src={project6}
+                alt="ui/ux project image "
+                className=" rounded-md"
+              />
+
               <h1 className=" carder hidden justify-center items-center absolute top-0 bottom-0 bg-[#000000a2] text-white w-[100%] text-center">
                 Fitness Mobile app UI/UX Design using Figma Click to explore
               </h1>
