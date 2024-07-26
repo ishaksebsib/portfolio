@@ -21,7 +21,7 @@ const replaceFragmentShader = (fragmentShader) =>
       float y = pow(x, 1.0/(1.0-a));
       return y;
     }
-  }`,
+  }`
     )
     .replace(
       `vec4 diffuseColor = vec4( diffuse, opacity );`,
@@ -31,7 +31,7 @@ float dist = length(vViewPosition);
 
 float fadeOpacity = smoothstep(fadeDist, 0.0, dist);
 fadeOpacity = exponentialEasing(fadeOpacity, 0.93);
-vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`,
+vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`
     );
 
 export const fadeOnBeforeCompile = (shader) => {
@@ -41,6 +41,6 @@ export const fadeOnBeforeCompile = (shader) => {
 export const fadeOnBeforeCompileFlat = (shader) => {
   shader.fragmentShader = replaceFragmentShader(shader.fragmentShader).replace(
     `#include <output_fragment>`,
-    `gl_FragColor = diffuseColor;`,
+    `gl_FragColor = diffuseColor;`
   );
 };
