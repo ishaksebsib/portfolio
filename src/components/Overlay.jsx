@@ -14,12 +14,15 @@ export const Overlay = () => {
       />
       {progress === 100 && (
         <div className={`intro ${play ? "intro--disappear" : ""}`}>
-          <h1 className="logo">
-            WAWATMOS
-            <div className="spinner">
-              <div className="spinner__image" />
-            </div>
-          </h1>
+          <h1 className="hello">Hello, I'm</h1>
+          <h1 className="logo">ISHAK SEBSIB</h1>
+          <div className="intro-desc-container">
+            <p className="intro-desc">
+              Passionate software engineer with a talent for creating innovative
+              solutions. Driven by curiosity, I excel in full stack and system
+              development, always eager to learn and grow.
+            </p>
+          </div>
           <p className="intro__scroll">Scroll to begin the journey</p>
           <button
             className="explore"
