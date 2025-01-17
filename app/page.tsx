@@ -1,4 +1,5 @@
 import NavBar from "@/components/base/NavBar";
+import Contact from "@/components/sections/Contact";
 import Hero from "@/components/sections/Hero";
 import Projects from "@/components/sections/Projects";
 
@@ -19,9 +20,7 @@ export default function Home() {
           <section className="w-full h-auto bg-white">
             <Projects />
           </section>
-          <section className="w-full h-screen bg-white">
-
-					</section>
+					<Contact />
         </section>
       </main>
     </>

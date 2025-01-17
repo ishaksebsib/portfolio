@@ -58,6 +58,7 @@ export default {
 				rob: ["var(--font-roboto)", "Roboto", "sans-serif"],
 				geist: ["var(--font-geist-sans)", "Inter", "sans-serif"],
 				mono: ["var(--font-geist-mono)", "Inter", "monospace"],
+				rubik: ["Rubik Bubbles", "sans-serif"],
 			},
 			borderRadius: {
 				lg: "var(--radius)",
