@@ -1,61 +1,68 @@
 "use client";
 import React from "react";
 import { StickyScroll } from "../ui/sticky-scroll-reveal";
-import Image from "next/image";
+import {
+  IconBrandAws,
+  IconBrandMongodb,
+  IconBrandNextjs,
+  IconBrandNodejs,
+  IconBrandPython,
+  IconBrandReact,
+  IconBrandRedux,
+  IconBrandRust,
+  IconBrandTailwind,
+	IconNetwork,
+	IconServer,
+} from "@tabler/icons-react";
 
-const content = [
+const personalProjects = [
   {
-    title: "Collaborative Editing",
+    title: "Ai Resume Assistant",
     description:
-      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
-      </div>
-    ),
+      "An intelligent web app that reviews resumes, provides detailed feedback, and assigns scores to help users improve their profiles and job prospects.",
+    imageUrl: "/assets/img/projects/1.png",
+    gitLink: "https://github.com/ishaksebsib/ai-rate-my-resume",
+    liveLink: "https://ai-rate-my-resume.vercel.app/",
+    languageIcons: [
+      <IconBrandReact key={0} />,
+      <IconBrandNextjs key={1} />,
+      <IconBrandPython key={2} />,
+      <IconBrandAws key={3} />,
+    ],
   },
   {
-    title: "Real time changes",
+    title: "Multi-Thredeed Web Server",
     description:
-      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white">
-        <Image
-          src="/linear.webp"
-          width={300}
-          height={300}
-          className="h-full w-full object-cover"
-          alt="linear board demo"
-        />
-      </div>
-    ),
+      "A high-performance web server built from scratch in Rust to efficiently handle concurrent requests using custom threading mechanisms and advanced optimization.",
+    imageUrl: "/assets/img/projects/2.webp",
+    gitLink: "https://github.com/ishaksebsib/multi-threaded-web-server",
+    languageIcons: [
+			<IconBrandRust key={0} />,
+			<IconServer key={1} />,
+			<IconNetwork key={2} />,
+		],
   },
   {
-    title: "Version control",
+    title: "Ecomece Web App",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
-      </div>
-    ),
-  },
-  {
-    title: "Running out of content",
-    description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Running out of content
-      </div>
-    ),
+      "A feature-rich ecommerce platform offering seamless browsing, cart management, and secure payments, designed with scalability and user experience in mind.",
+    imageUrl: "/assets/img/projects/3.png",
+    gitLink: "https://github.com/ishaksebsib/clothes-shopping-app",
+    liveLink: "https://shop-isotop.vercel.app/",
+    languageIcons: [
+      <IconBrandReact key={0} />,
+      <IconBrandRedux key={1} />,
+      <IconBrandNodejs key={2} />,
+      <IconBrandMongodb key={4} />,
+      <IconBrandTailwind key={5} />,
+    ],
   },
 ];
 
 const Projects = () => {
   return (
     <section className="w-full h-auto bg-white">
-      <StickyScroll content={content} />;
+      <StickyScroll content={personalProjects} />;
     </section>
   );
 };
