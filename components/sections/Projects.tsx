@@ -53,7 +53,11 @@ const content = [
 ];
 
 const Projects = () => {
-  return <StickyScroll content={content} />;
+  return (
+    <section className="w-full h-auto bg-white">
+      <StickyScroll content={content} />;
+    </section>
+  );
 };
 
 export default Projects;
