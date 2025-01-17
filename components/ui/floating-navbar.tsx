@@ -54,7 +54,7 @@ export const FloatingNav = ({
           className,
         )}
       >
-        {navItems.slice(0, -1).map((navItem: any, idx: number) => (
+        {navItems.slice(0, -1).map((navItem: {name:string,link:string}, idx: number) => (
           <button
             key={`link=${idx}`}
             onClick={() => scrollTo(navItem.link)}
