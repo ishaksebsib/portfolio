@@ -19,7 +19,9 @@ export default function Home() {
           <section className="w-full h-auto bg-white">
             <Projects />
           </section>
-          <section className="w-full h-screen bg-red-100"> </section>
+          <section className="w-full h-screen bg-white">
+
+					</section>
         </section>
       </main>
     </>
