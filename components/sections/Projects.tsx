@@ -61,7 +61,7 @@ const personalProjects = [
 
 const Projects = () => {
   return (
-    <section className="w-full h-auto bg-white">
+    <section id={"work"} className="w-full h-auto bg-white">
       <StickyScroll content={personalProjects} />;
     </section>
   );

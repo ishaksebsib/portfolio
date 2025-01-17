@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 const Contact = () => {
 	const oppeningEmail = () => toast.success("Opening Email 😊");
 	return (
-		<section className="w-full h-screen bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
+		<section id={"contact"} className="w-full h-screen bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
 			<div
 				id="getintouch"
 				className="h-screen flex flex-col gap-4 items-center justify-center font-inter "

@@ -6,8 +6,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { cn, scrollTo } from "@/lib/utils";
 
 export const FloatingNav = ({
   navItems,
@@ -56,27 +55,26 @@ export const FloatingNav = ({
         )}
       >
         {navItems.slice(0, -1).map((navItem: any, idx: number) => (
-          <Link
+          <button
             key={`link=${idx}`}
-            href={navItem.link}
+            onClick={() => scrollTo(navItem.link)}
             className={cn(
               "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500",
             )}
           >
             <span className="block text-sm">{navItem.name}</span>
-          </Link>
+          </button>
         ))}
 
         {/* Render the last item as a button */}
         {navItems.length > 0 && (
-          <Link
-            key="login-button"
-            href={navItems[navItems.length - 1].link}
+          <button
+            onClick={() => scrollTo(navItems[navItems.length - 1].link)}
             className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full"
           >
             <span>{navItems[navItems.length - 1].name}</span>
             <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
-          </Link>
+          </button>
         )}
       </motion.div>
     </AnimatePresence>

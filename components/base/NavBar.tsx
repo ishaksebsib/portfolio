@@ -6,19 +6,20 @@ const NavBar = () => {
   const navItems = [
     {
       name: "Home",
-      link: "/#",
+      link: "home",
     },
     {
       name: "Work",
-      link: "/#",
+      link: "work",
     },
-    {
-      name: "Skills",
-      link: "/#",
-    },
+    //{
+      //name: "Blog",
+      //link: "/#",
+			//isSection: false,
+    //},
     {
       name: "Contact",
-      link: "/#",
+      link: "contact",
     },
   ];
   return (

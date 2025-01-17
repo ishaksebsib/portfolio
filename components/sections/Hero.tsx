@@ -5,7 +5,7 @@ import GradientText from "@/components/ui/GradientText";
 
 const Hero = () => {
   return (
-    <section className="w-full h-screen">
+    <section id={"home"} className="w-full h-screen">
       {/*Main Gradient Background */}
       <section className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
         {/*Background pink gradient circle*/}
