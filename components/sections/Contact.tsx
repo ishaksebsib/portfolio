@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Socails from "../base/Socails";
 
 const Contact = () => {
 	//const oppeningEmail = () => toast("Opening Email 😊");
@@ -17,6 +18,7 @@ const Contact = () => {
 					always open. Whether you have a Project or just want to say hi, I&apos;m
 					ready get back to you!
 				</p>
+				<Socails />
 				<Link
 					href={"mailto:ishaksebsib@gmail.com"}
 					//onClick={oppeningEmail}
