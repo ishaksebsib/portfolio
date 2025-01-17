@@ -1,9 +1,11 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 import Socails from "../base/Socails";
+import toast from "react-hot-toast";
 
 const Contact = () => {
-	//const oppeningEmail = () => toast("Opening Email 😊");
+	const oppeningEmail = () => toast.success("Opening Email 😊");
 	return (
 		<section className="w-full h-screen bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]">
 			<div
@@ -21,7 +23,7 @@ const Contact = () => {
 				<Socails />
 				<Link
 					href={"mailto:ishaksebsib@gmail.com"}
-					//onClick={oppeningEmail}
+					onClick={oppeningEmail}
 					className="py-3 px-4 sm:py-4 sm:px-6 md:py-3 md:px-7 relative">
 					<div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg" />
 					<p className="relative font-geist text-white text-xs sm:text-sm md:text-lg">
