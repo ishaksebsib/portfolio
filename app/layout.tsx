@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/nuxt";
 import { Geist, Geist_Mono, Roboto, Rubik_Bubbles, Inter as FontSans } from "next/font/google";
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${rubikBubbles.variable} ${fontSans.variable} antialiased`}
 			>
 				{children}
+				<Analytics />/
 			</body>
 		</html>
 	);
