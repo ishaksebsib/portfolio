@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Analytics } from "@vercel/analytics/nuxt";
+import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono, Roboto, Rubik_Bubbles, Inter as FontSans } from "next/font/google";
 import "./globals.css";
 
