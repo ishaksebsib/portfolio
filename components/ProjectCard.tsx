@@ -135,20 +135,20 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div className="group terminal-window transition-all hover:border-accent-red/80 h-full flex flex-col">
-      <div className="terminal-header flex items-center justify-between py-2 px-4 border-b border-white/5 bg-white/[0.02]">
-        <div className="font-label text-[9px] text-white/40 tracking-[0.2em]">
+      <div className="terminal-header flex items-center justify-between py-2 px-4 border-b border-border bg-muted/30">
+        <div className="font-label text-[9px] text-muted-foreground/60 tracking-[0.2em]">
           OBJ: {title.toUpperCase()}
         </div>
         <div className="flex gap-1">
-          <div className="w-2 h-2 bg-white/10 group-hover:bg-red-500/50 transition-colors"></div>
-          <div className="w-2 h-2 bg-white/10 group-hover:bg-yellow-500/50 transition-colors"></div>
-          <div className="w-2 h-2 bg-white/10 group-hover:bg-green-500/50 transition-colors"></div>
+          <div className="w-2 h-2 bg-foreground/10 group-hover:bg-red-500/50 transition-colors"></div>
+          <div className="w-2 h-2 bg-foreground/10 group-hover:bg-yellow-500/50 transition-colors"></div>
+          <div className="w-2 h-2 bg-foreground/10 group-hover:bg-green-500/50 transition-colors"></div>
         </div>
       </div>
 
       <div className="p-6 md:p-8 space-y-6 flex-1 flex flex-col">
         <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
-          <h3 className="text-xl font-heading tracking-wider text-white group-hover:text-accent-red transition-colors shrink-0">
+          <h3 className="text-xl font-heading tracking-wider text-foreground group-hover:text-accent-red transition-colors shrink-0">
             {title}
           </h3>
 
@@ -158,7 +158,7 @@ export function ProjectCard({
                 <div
                   key={tech}
                   title={tech}
-                  className="w-6 h-6 flex items-center justify-center bg-white/5 border border-white/10 text-white/60 hover:text-accent-cyan hover:border-accent-cyan hover:bg-accent-cyan/10 transition-all rounded-sm cursor-help"
+                  className="w-6 h-6 flex items-center justify-center bg-card border border-border text-muted-foreground hover:text-accent-cyan hover:border-accent-cyan hover:bg-accent-cyan/10 transition-all rounded-sm cursor-help"
                 >
                   {TechIcons[tech] || <Terminal size={12} />}
                 </div>
@@ -172,14 +172,14 @@ export function ProjectCard({
           {description}
         </p>
 
-        <div className="pt-6 border-t border-white/5 flex items-center justify-between">
+        <div className="pt-6 border-t border-border flex items-center justify-between">
           <div className="flex gap-4">
             {githubUrl && (
               <a
                 href={githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 hover:text-white transition-colors flex items-center gap-2 text-xs font-mono uppercase"
+                className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2 text-xs font-mono uppercase"
               >
                 <Github size={14} />
                 <span>Source</span>
@@ -190,7 +190,7 @@ export function ProjectCard({
                 href={liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/40 hover:text-accent-red transition-colors flex items-center gap-2 text-xs font-mono uppercase"
+                className="text-muted-foreground hover:text-accent-red transition-colors flex items-center gap-2 text-xs font-mono uppercase"
               >
                 <ArrowUpRight size={14} />
                 <span>Deploy</span>
