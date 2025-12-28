@@ -1,11 +1,4 @@
-import {
-  Activity,
-  Database,
-  GitCommit,
-  GitMerge,
-  GitPullRequest,
-  Server,
-} from "lucide-react";
+import { Activity, Database, GitCommit, Server } from "lucide-react";
 
 interface Contribution {
   hash: string;
@@ -58,7 +51,7 @@ export function ContributionLog() {
   ];
 
   return (
-    <div className="terminal-window h-full flex flex-col font-mono text-sm border-2 border-border">
+    <div className="terminal-window h-full flex flex-col font-mono text-sm border border-border">
       {/* Complex Header / Stats Bar */}
       <div className="bg-muted border-b border-border p-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-[10px] tracking-widest text-muted-foreground">
         <div className="flex flex-col gap-1">
@@ -96,13 +89,13 @@ export function ContributionLog() {
           <GitCommit size={120} />
         </div>
 
-        {contributions.map((c, i) => (
+        {contributions.map((c) => (
           <a
-            key={i}
+            key={c.hash}
             href={c.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-start gap-4 group cursor-pointer relative z-10 hover:bg-muted/10 -mx-4 px-4 py-1 transition-colors"
+            className="flex items-start gap-4 group cursor-pointer relative z-10 hover:bg-muted/20 -mx-4 px-4 py-2 transition-colors border-b border-border/30 last:border-b-0"
           >
             {/* ASCII Graph Column */}
             <div className="font-mono text-muted-foreground/40 whitespace-pre leading-none pt-1 select-none">
@@ -112,20 +105,23 @@ export function ContributionLog() {
               {c.graph === "merge" && (
                 <span className="text-purple-400">|\</span>
               )}
-              {c.graph === "mid" && <span className="text-muted-foreground/30">| *</span>}
-              {c.graph === "end" && <span className="text-muted-foreground/30">|/</span>}
+              {c.graph === "mid" && (
+                <span className="text-muted-foreground/30">| *</span>
+              )}
+              {c.graph === "end" && (
+                <span className="text-muted-foreground/30">|/</span>
+              )}
             </div>
 
             {/* Commit Details */}
             <div className="flex-1 flex flex-col md:flex-row md:items-center gap-1 md:gap-4 pb-4 border-l border-border pl-4 ml-1 md:border-0 md:pl-0 md:ml-0 md:pb-0">
-              <span className="text-muted-foreground  text-xs opacity-60">
-                [{c.hash}]
-              </span>
+              <span className="text-muted-foreground text-xs">[{c.hash}]</span>
               <span
-                className={`text-[10px] font-bold px-1.5 py-0.5 border ${c.type === "PR"
-                  ? "border-blue-500/30 text-blue-400 bg-blue-500/5"
-                  : "border-purple-500/30 text-purple-400 bg-purple-500/5"
-                  }`}
+                className={`text-[10px] font-bold px-2 py-0.5 border ${
+                  c.type === "PR"
+                    ? "border-accent-blue bg-accent-blue/10 text-accent-blue"
+                    : "border-accent-purple bg-accent-purple/10 text-accent-purple"
+                }`}
               >
                 {c.type}
               </span>

@@ -14,7 +14,7 @@
 :root {
   --background: #ffffff;
   --foreground: #0a0a0a;
-  --card: #f5f5f5;
+  --card: #f8f8f8;
   --card-foreground: #0a0a0a;
   --popover: #ffffff;
   --popover-foreground: #0a0a0a;
@@ -22,35 +22,43 @@
   --primary-foreground: #ffffff;
   --secondary: #e5e5e5;
   --secondary-foreground: #0a0a0a;
-  --muted: #e5e5e5;
-  --muted-foreground: #737373;
+  --muted: #f0f0f0;
+  --muted-foreground: #525252;
   --accent: #e5e5e5;
   --accent-foreground: #0a0a0a;
   --destructive: #ef4444;
-  --border: #e5e5e5;
+  --border: #d4d4d4;
   --input: #e5e5e5;
   --ring: #0a0a0a;
 
   --radius: 0px;
-  --grid-color: rgba(0, 0, 0, 0.05);
-  --dot-color: rgba(0, 0, 0, 0.1);
-  /* Light mode: Very subtle scanline, almost no vignette */
-  --scanline: linear-gradient(to bottom, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.02) 50%);
-  --vignette: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.05) 100%);
+  --grid-color: rgba(0, 0, 0, 0.06);
+  --dot-color: rgba(0, 0, 0, 0.12);
 
-  /* Light Mode Accents (High Contrast) */
-  --accent-red: #dc2626;
-  /* Red 600 */
-  --accent-cyan: #0891b2;
-  /* Cyan 600 */
-  --accent-green: #16a34a;
-  /* Green 600 */
-  --accent-yellow: #ca8a04;
-  /* Yellow 600 */
-  --accent-blue: #2563eb;
-  /* Blue 600 */
-  --accent-purple: #9333ea;
-  /* Purple 600 */
+  /* Spacing tokens */
+  --space-section: 4rem;
+  --space-content: 2rem;
+  --space-card: 1.5rem;
+
+  /* Light mode: Very subtle scanline, almost no vignette */
+  --scanline: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.02) 50%
+  );
+  --vignette: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.03) 100%
+  );
+
+  /* Light Mode Accents (High Contrast - Darker for visibility) */
+  --accent-red: #b91c1c;
+  --accent-cyan: #0369a1;
+  --accent-green: #047857;
+  --accent-yellow: #a16207;
+  --accent-blue: #1d4ed8;
+  --accent-purple: #7c3aed;
 }
 
 .dark {
@@ -73,11 +81,25 @@
   --input: #262626;
   --ring: #d4d4d8;
 
-  --grid-color: rgba(255, 255, 255, 0.05);
-  --dot-color: rgba(255, 255, 255, 0.1);
-  /* Dark mode: Stronger scanline and vignette (Original) */
-  --scanline: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-  --vignette: radial-gradient(circle at center, transparent 0%, rgba(5, 5, 5, 0.8) 100%);
+  --grid-color: rgba(255, 255, 255, 0.04);
+  --dot-color: rgba(255, 255, 255, 0.08);
+
+  /* Spacing tokens (inherit from root) */
+  --space-section: 4rem;
+  --space-content: 2rem;
+  --space-card: 1.5rem;
+
+  /* Dark mode: Moderate scanline and reduced vignette */
+  --scanline: linear-gradient(
+    to bottom,
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.08) 50%
+  );
+  --vignette: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(5, 5, 5, 0.5) 100%
+  );
 
   /* Dark Mode Accents (Neon) */
   --accent-red: #ff3333;
@@ -98,7 +120,7 @@
 
   * {
     border-color: var(--border);
-    border-radius: 0 !important;
+    border-radius: 0;
   }
 
   body {
@@ -130,22 +152,24 @@
 
   .bg-dots {
     background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-    background-size: 24px 24px;
+    background-size: 32px 32px;
   }
 
   .bg-crosshair {
-    background-image:
-      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-    background-size: 40px 40px;
-    /* This is just a base grid for now, true crosshair requires more complex gradients or SVG. 
+    /* This is just a base grid for now, true crosshair requires more complex gradients or SVG.
        Let's simulate a 'technical' look with a tighter grid + dots */
     background-image:
       radial-gradient(circle, var(--dot-color) 1px, transparent 1px),
       linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
       linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-    background-size: 40px 40px, 40px 40px, 40px 40px;
-    background-position: 0 0, 20px 20px, 20px 20px;
+    background-size:
+      40px 40px,
+      40px 40px,
+      40px 40px;
+    background-position:
+      0 0,
+      20px 20px,
+      20px 20px;
     /* Offset the lines to be between dots if desired, or just align them */
   }
 
@@ -173,22 +197,32 @@
     font-family: var(--font-geist-mono);
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.05em;
   }
 
   .font-label {
     font-family: var(--font-geist-mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     font-weight: 600;
   }
 
   .font-body {
     font-family: var(--font-geist-mono);
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--foreground);
     font-weight: 400;
+  }
+
+  /* Focus visible for accessibility */
+  .focus-ring {
+    outline: none;
+  }
+
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--accent-cyan);
+    outline-offset: 2px;
   }
 
   .terminal-window {
