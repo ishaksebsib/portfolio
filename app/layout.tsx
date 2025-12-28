@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistMono.variable} antialiased bg-background text-foreground min-h-screen bg-grid relative overflow-x-hidden scanlines`}
+        className={`${geistMono.variable} antialiased bg-background text-foreground min-h-screen bg-dots relative overflow-x-hidden scanlines`}
       >
         <div className="fixed inset-0 vignette pointer-events-none z-50" />
         <div className="relative max-w-5xl mx-auto px-6 py-12 lg:py-24 z-10">
