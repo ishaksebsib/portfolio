@@ -3,17 +3,17 @@
 The site talks like a person writing a short note, not like a product page.
 
 ## Rules
-- **First person, present tense.** "Building Acme Labs…", not "Ishak is a passionate engineer who…".
-- **Lead with now, then history.** The hero is two sentences: what I'm building now, then "Before that: …" in muted text.
-- **Be specific.** Use names, numbers and outcomes: "cut p95 latency by 60%", "used by 2k+ merchants".
+- **First person, present tense.** "I build fast software…", not "Ishak is a passionate engineer who…".
+- **Introduce, then say what you're doing now.** The hero is a short first-person intro ("I'm Ishak, …" plus the one handwritten phrase), then a smaller muted serif line on what I do, then a separate 15px "Right now I'm …" note with real names linked inline (aisdk, Vercel, Turso, HelixDB). Names and links live in the small note, never in the big serif lines. Casual and direct, like talking to someone, never like a résumé.
+- **Be specific.** Use names, numbers and outcomes: "50k+ monthly users", "500+ annotators", "70% faster releases".
 - **Keep it short.** One-line descriptions in lists. Summaries in the timeline are at most one sentence.
-- **Use lowercase for project names and descriptions in rows** ("a job queue in 400 lines of Go"). Titles use sentence case.
+- **Project names stay as their repo names** (`aisdk`, `helix-db`); descriptions are one plain sentence in sentence case ("Tree plugin for the OpenCode TUI.").
 - **Leave out buzzwords.** Don't use passionate, innovative, cutting-edge, synergy, rockstar, "I love to code".
 - **Keep calls to action minimal.** No "Hire me!" banners. Contact is a plain Connect list.
 
 ## Examples
 | Don't | Do |
 |---|---|
-| "Passionate full-stack developer crafting innovative digital experiences" | "Building Acme Labs, tools that help small teams ship without the chaos." |
-| "Worked on various backend projects" | "Led the move to an event-driven backend and cut p95 latency by 60%." |
+| "Passionate full-stack developer crafting innovative digital experiences" | "I'm Ishak, a Full-stack engineer. I'm curious by nature, so I work across the whole stack…" |
+| "Worked on various AI projects" | "Own AI product features end to end for client platforms serving 50k+ monthly users." |
 | "Check out my amazing projects below!" | (Nothing. The Projects label is enough.) |

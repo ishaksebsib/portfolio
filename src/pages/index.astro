@@ -25,7 +25,10 @@ const links = [
 ];
 ---
 
-<Base title="Ishak — Software Engineer" description="Software engineer building products from zero.">
+<Base
+  title="Ishak Sebsib — Full-stack Engineer"
+  description="Full-stack engineer building aisdk, the AI toolkit for Rust, and contributing to open source at Vercel, Turso, and HelixDB."
+>
   <div class="rails">
     <SiteHeader />
 
@@ -42,17 +45,18 @@ const links = [
         <span class="corner bl"></span><span class="corner br"></span>
 
         <div class="frame-body">
-          <a class="announce" href="#work">
-            <span class="dot"></span>
-            Currently building Acme Labs
-            <span aria-hidden="true">›</span>
-          </a>
-          <h1 class="statement">
-            Building <a href="#">Acme Labs</a>, tools that help small teams ship{" "}
-            <span class="hand">without the chaos.</span>
-          </h1>
+          <h1 class="statement">I'm Ishak, a Full-stack engineer.</h1>
           <p class="statement muted">
-            Before that: backend systems at Northwind and payments infrastructure at Globex.
+            I'm <span class="hand">curious by nature</span>, so I work across the whole stack, from
+            low-level systems to full-stack apps, with a soft spot for developer tools.
+          </p>
+          <p class="now">
+            Right now I'm building{" "}
+            <a href="https://aisdk.rs/" target="_blank" rel="noopener noreferrer">aisdk</a>, the AI toolkit
+            for Rust, and contributing to open source at{" "}
+            <a href="https://github.com/vercel" target="_blank" rel="noopener noreferrer">Vercel</a>,{" "}
+            <a href="https://github.com/tursodatabase" target="_blank" rel="noopener noreferrer">Turso</a>, and{" "}
+            <a href="https://github.com/HelixDB/helix-db" target="_blank" rel="noopener noreferrer">HelixDB</a>.
           </p>
           <nav class="tags" aria-label="Sections">
             <a href="#projects">Projects</a>
@@ -162,30 +166,6 @@ const links = [
     padding: 48px var(--gutter) 36px;
   }
 
-  .announce {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 22px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-  }
-
-  .announce:hover {
-    color: var(--foreground);
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 20%, transparent);
-  }
 
   .statement {
     font-family: var(--font-serif);
@@ -199,11 +179,35 @@ const links = [
     margin-top: 14px;
   }
 
+  /* "Right now" note: body-size sans so the names read as details, not headlines. */
+  .now {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* Inline links read as links, Leo-style: visible underline, ink on hover. */
+  .now a,
+  .statement a {
+    text-decoration-color: var(--faint);
+    text-underline-offset: 4px;
+  }
+
+  .now a:hover,
+  .statement a:hover {
+    color: var(--foreground);
+    text-decoration-color: var(--foreground);
+  }
+
   .statement.muted {
+    font-size: clamp(19px, 3.8vw, 21px);
+    line-height: 1.45;
     color: var(--muted);
   }
 
   .hand {
+    white-space: nowrap;
     font-family: var(--font-hand);
     font-size: 1.2em;
     color: var(--primary);

@@ -73,14 +73,14 @@ A 3-column grid: `92px` date | `20px` node | content. A 1px `--line` vertical ru
 ## Tags
 Small bordered mono chips that link to on-page anchors. Padding `4px 9px`, `1px solid var(--line)`, square. On hover, text becomes `--foreground` and the border becomes `--faint`.
 
-## Status line
+## Status line (retired)
 `● CURRENTLY BUILDING X ›`: a 6px primary dot with halo, uppercase mono, `--muted`. It goes above the hero statement, and there is only one per page.
 
 ## Hero frame
 ```
 band (full width, NoiseField behind, 1px --line top/bottom)
 └─ .column.frame (background fill, --line side borders, 4 corner squares)
-   ├─ .frame-body: status line → statement (serif) → muted "Before that" statement → tags
+   ├─ .frame-body: intro statement (serif, h1) "I'm Ishak, a Full-stack engineer." → muted serif line that carries the one hand phrase inline as the reason for the breadth: "I'm *curious by nature*, so I work across the whole stack…" (`.hand`: `--font-hand`, `--primary`) → muted serif line (what I do, ~21px) → `.now` note (15px sans, `--muted`, linked names: what I'm on right now) → tags
    ├─ <Fire client:visible cell={4} height={0.8} style={{height: "150px"}} />
    └─ thin NoiseField strip (28px, top border)
 ```
