@@ -6,36 +6,8 @@ import SectionHead from "@/components/SectionHead.astro";
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
 import { Fire } from "@/components/dithercn/fire";
+import { experience, formatPeriod } from "@/data/experience";
 import { featuredProjects } from "@/data/projects";
-
-// Placeholder content for the design prototype.
-const experience = [
-  {
-    period: "2025 – now",
-    role: "Founding Engineer",
-    company: "Acme Labs",
-    summary: "Building the core platform from zero: infra, product, and the first ten customers.",
-    latest: true,
-  },
-  {
-    period: "2023 – 2025",
-    role: "Senior Software Engineer",
-    company: "Northwind",
-    summary: "Led the move to an event-driven backend and cut p95 latency by 60%.",
-  },
-  {
-    period: "2021 – 2023",
-    role: "Software Engineer",
-    company: "Globex",
-    summary: "Shipped the payments SDK used by 2k+ merchants.",
-  },
-  {
-    period: "2020",
-    role: "Engineering Intern",
-    company: "Initech",
-    summary: "Internal tooling for deploys and feature flags.",
-  },
-];
 
 // NOTE: Writing section is disabled until the blog exists. Re-enable this data,
 // the "Writing" hero tag, and the <section id="writing"> block below together.
@@ -116,12 +88,12 @@ const links = [
         <div class="column body">
         <ol class="timeline">
           {experience.map((job) => (
-            <li class:list={["entry", { latest: job.latest }]}>
-              <span class="period">{job.period}</span>
+            <li class:list={["entry", { latest: !job.end }]}>
+              <span class="period">{formatPeriod(job)}</span>
               <span class="node" aria-hidden="true"></span>
               <div>
                 <p class="entry-title">
-                  {job.latest && <span class="badge">Latest</span>}
+                  {!job.end && <span class="badge">Latest</span>}
                   <strong>{job.role}</strong>
                   <span class="dim"> · {job.company}</span>
                 </p>
