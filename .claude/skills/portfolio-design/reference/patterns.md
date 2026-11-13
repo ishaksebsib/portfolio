@@ -17,15 +17,16 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 | Use | Value |
 |---|---|
 | Column side padding | `var(--gutter)` (24px) |
-| Between sections | 56px |
+| Hero → first section head | 0. Flush, overlapping by 1px so the rules merge (`main.content` margin-top: -1px) |
+| Section head inner padding | 14px vertical |
+| Section body | 28px top, 48px bottom |
 | Header padding | 56px top, 28px bottom |
 | Hero frame body | 48px top, 36px bottom |
-| Label → content | 18px |
 | Between rows | 10px |
 | Between tags / chips | 8px |
 | Inline gaps (dot→text, name→desc) | 10px |
 | Timeline entry bottom | 22px |
-| Page bottom (content) | 72px; footer 20px top / 40px bottom |
+| Footer | 20px top / 40px bottom |
 
 ## Type sizes
 | Element | Font | Size / line-height / tracking |
@@ -43,11 +44,13 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 ## Section label
 ```astro
 <section id="projects">
-  <h2 class="label">Projects</h2>
-  ...
+  <SectionHead label="Projects" />
+  <div class="column body">
+    ...
+  </div>
 </section>
 ```
-Labels are plain uppercase mono text. Use `/` to combine ideas ("Changelog / Experience"). Never a large heading.
+`SectionHead` renders the full-width separator band (static dithercn `hatched` fill, `--line` rules, corner marks) with the label inside the column. Labels are plain uppercase mono text. Use `/` to combine ideas ("Changelog / Experience"). Never use a large heading.
 
 ## Text rows
 ```astro

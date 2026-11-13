@@ -1,6 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { NoiseField } from "@/components/dithercn/noise-field";
+import SectionHead from "@/components/SectionHead.astro";
 import { Fire } from "@/components/dithercn/fire";
 
 // Placeholder content for the design prototype.
@@ -118,9 +119,10 @@ const links = [
       </div>
     </section>
 
-    <main class="column content">
+    <main class="content">
       <section id="work">
-        <h2 class="label">Changelog / Experience</h2>
+        <SectionHead label="Changelog / Experience" />
+        <div class="column body">
         <ol class="timeline">
           {experience.map((job) => (
             <li class:list={["entry", { latest: job.latest }]}>
@@ -137,10 +139,12 @@ const links = [
             </li>
           ))}
         </ol>
+        </div>
       </section>
 
       <section id="projects">
-        <h2 class="label">Projects</h2>
+        <SectionHead label="Projects" />
+        <div class="column body">
         <ul class="rows">
           {projects.map((project) => (
             <li>
@@ -150,10 +154,12 @@ const links = [
             </li>
           ))}
         </ul>
+        </div>
       </section>
 
       <section id="writing">
-        <h2 class="label">Writing</h2>
+        <SectionHead label="Writing" />
+        <div class="column body">
         <ul class="rows">
           {writing.map((post) => (
             <li>
@@ -162,10 +168,12 @@ const links = [
             </li>
           ))}
         </ul>
+        </div>
       </section>
 
       <section id="connect">
-        <h2 class="label">Connect</h2>
+        <SectionHead label="Connect" />
+        <div class="column body">
         <ul class="rows">
           {links.map((link) => (
             <li>
@@ -174,6 +182,7 @@ const links = [
             </li>
           ))}
         </ul>
+        </div>
       </section>
     </main>
 
@@ -286,20 +295,6 @@ const links = [
     border-inline: 1px solid var(--line);
   }
 
-  .corner {
-    position: absolute;
-    z-index: 1;
-    width: 7px;
-    height: 7px;
-    background: var(--background);
-    border: 1px solid var(--faint);
-  }
-
-  .tl { top: -4px; left: -4px; }
-  .tr { top: -4px; right: -4px; }
-  .bl { bottom: -4px; left: -4px; }
-  .br { bottom: -4px; right: -4px; }
-
   .frame-body {
     padding: 48px var(--gutter) 36px;
   }
@@ -375,20 +370,13 @@ const links = [
     border-color: var(--faint);
   }
 
+  /* Sit flush under the hero; overlap 1px so the two border rules merge. */
   .content {
-    display: grid;
-    gap: 56px;
-    padding: 56px var(--gutter) 72px;
+    margin-top: -1px;
   }
 
-  .label {
-    margin-bottom: 18px;
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--faint);
+  .body {
+    padding: 28px var(--gutter) 48px;
   }
 
   .dim {

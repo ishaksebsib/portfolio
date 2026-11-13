@@ -82,6 +82,21 @@ ol {
   list-style: none;
 }
 
+/* Square marks where a frame's borders meet the rails. Parent must be positioned. */
+.corner {
+  position: absolute;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  background: var(--background);
+  border: 1px solid var(--faint);
+}
+
+.corner.tl { top: -4px; left: -4px; }
+.corner.tr { top: -4px; right: -4px; }
+.corner.bl { bottom: -4px; left: -4px; }
+.corner.br { bottom: -4px; right: -4px; }
+
 /* Plain-CSS stand-ins for the Tailwind classes the dithercn engine emits. */
 .group\/dither {
   position: relative;

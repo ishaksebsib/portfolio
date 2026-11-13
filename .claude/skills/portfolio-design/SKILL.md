@@ -13,9 +13,9 @@ The site reads like a quiet engineering document: one narrow column, hairline ru
 
 ### Layout
 - **Single centered column, `--column` (640px) wide, `--gutter` (24px) side padding.** Thin `--line` rails run down both sides of the column for the full page height. No multi-column grids, no full-bleed content sections — the narrow column is the identity.
-- Full width is allowed only for **background texture bands** (e.g. the hero's NoiseField band). Content always stays inside the column.
-- The hero lives in a **bordered frame** with small square corner marks (7px, `--faint` border, `--background` fill). Frames are for the hero or one special moment, not every section.
-- Sections are separated by whitespace (56px), not by cards, boxes, or dividers.
+- Full width is allowed only for **background texture bands**: the hero's NoiseField band and the section separator bands. Content always stays inside the column.
+- The hero lives in a **bordered frame** with small square corner marks (the global `.corner .tl/.tr/.bl/.br` classes). Frames are for the hero or one special moment.
+- **Every content section starts with `<SectionHead label="…" />`** (`src/components/SectionHead.astro`). It's a full-width band with 1px `--line` rules top and bottom, dithercn's static `hatched` fill outside the column (lines, not noise: the user compared both and chose lines), the mono label inside, and corner marks where the rules meet the rails. Content follows in a `.column.body` block. Don't use cards, boxes, or other dividers.
 - See [reference/patterns.md](reference/patterns.md) for exact spacing values and copy-ready markup.
 
 ### Typography — every font has one job
@@ -44,8 +44,9 @@ Content is presented as text rows, not card grids: **name** + dim one-line descr
 
 ### Dither backgrounds — dithercn only
 - All animated/texture backgrounds come from **dithercn** (https://dithercn.dev) components. **Never hand-roll** CSS hatching, noise, SVG patterns, or custom shaders — pick a dithercn component instead.
-- Currently used: `Fire` (hero, bottom of frame) and `NoiseField` (full-width band behind the hero, and thin strips). Installed files live in `src/components/dithercn/`; the engine is in `src/lib/dither/`.
-- Always hydrate with `client:visible`, size with `style` (height), and color via tokens (`--dither-ink` = `--primary`; quiet textures use `color="--line"`). Keep at most ~3 dither canvases per page.
+- Currently used: `Fire` (hero, bottom of frame), `NoiseField` (the full-width band behind the hero, plus a thin strip), and the engine's static `fillStyle("hatched", …)` (section separator bands). Installed files live in `src/components/dithercn/`, and the engine is in `src/lib/dither/`.
+- **Animated** components (WebGL canvases): always hydrate with `client:visible`, size them with `style` (height), and color them with tokens (`--dither-ink` = `--primary`; quiet textures use `color="--line"`). Keep it to about 3 canvases per page.
+- **Static** textures (repeated bands, fills): use `fillStyle()` from `@/lib/dither` as an inline style in `.astro`. It renders on the server with zero JS and doesn't count toward the canvas budget.
 - To add another component, follow [reference/dithercn.md](reference/dithercn.md).
 
 ### Motion
@@ -67,7 +68,8 @@ First person, plain, specific, short. What I'm building now, then "Before that: 
 - [ ] Content stays inside the 640px column; spacing matches [reference/patterns.md](reference/patterns.md)
 - [ ] Each font used only for its role; no weight above 500; hand font used at most once
 - [ ] `--primary` used only for small accents
-- [ ] Any background/texture is a dithercn component with `client:visible`
+- [ ] Any background/texture is dithercn: an animated component with `client:visible`, or static `fillStyle()`
+- [ ] New sections start with `<SectionHead />`
 - [ ] Checked in **both** light and dark, at desktop and ~390px phone width
 - [ ] Copy follows the voice rules
 - [ ] `pnpm check` passes; preview with `astro dev --background` (`astro dev stop` when done)
