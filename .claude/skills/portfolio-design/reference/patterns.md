@@ -6,7 +6,8 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 - Spacing scale
 - Type sizes
 - Section title
-- Text rows (projects / writing / links)
+- Project rows
+- Text rows (writing / links)
 - Changelog timeline
 - Tags
 - Status line
@@ -86,3 +87,21 @@ band (full width, NoiseField behind, 1px --line top/bottom)
 
 ## Footer
 A single mono row, uppercase, `--faint`: `© YEAR NAME` on the left and `City, Country · UTC±N` on the right, with a `--line` rule above.
+
+## Project rows
+```astro
+<SectionHead label="Projects" />
+{featuredProjects.map((project) => <ProjectRow project={project} />)}
+<div class="column view-all">
+  <a class="button" href="/projects">View all projects</a>
+</div>
+```
+| Part | Value |
+|---|---|
+| Row padding | 22px vertical, `--gutter` horizontal |
+| Grid | `44px 1fr 16px`, 14px gap |
+| Icon | dithercn `Avatar`, 44px, square, `--primary` |
+| Name | sans 500, 16px, -0.01em |
+| Description | sans 400, 14px / 1.5, `--muted`, may wrap |
+| Date line | mono 11px, uppercase, 0.06em, `--faint`, 13px calendar icon, `MON YYYY · tag` |
+| View-all row | 20px top / 28px bottom, centered button |

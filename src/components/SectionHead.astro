@@ -3,17 +3,27 @@ import { fillStyle } from "@/lib/dither";
 
 interface Props {
   label: string;
+  /** Adds a back arrow linking here, for sub-pages. */
+  backHref?: string;
 }
 
-const { label } = Astro.props;
+const { label, backHref } = Astro.props;
+const Heading = backHref ? "h1" : "h2";
 ---
 
 <div class="head">
   <div class="texture" style={fillStyle("hatched", { color: "--line", cell: 3 })}></div>
-  <div class="column">
+  <div class="column inner">
     <span class="corner tl"></span><span class="corner tr"></span>
     <span class="corner bl"></span><span class="corner br"></span>
-    <h2 class="label">{label}</h2>
+    {backHref && (
+      <a class="back" href={backHref} aria-label="Back">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M19 12H5M11 6l-6 6 6 6"></path>
+        </svg>
+      </a>
+    )}
+    <Heading class="label">{label}</Heading>
   </div>
 </div>
 
@@ -29,13 +39,24 @@ const { label } = Astro.props;
     inset: 0;
   }
 
-  .column {
-    position: relative;
-    width: min(var(--column), 100%);
-    margin-inline: auto;
+  .inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     padding: 12px var(--gutter);
     border-inline: 1px solid var(--line);
     background: var(--background);
+  }
+
+  .back {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .back:hover {
+    color: var(--foreground);
   }
 
   .label {

@@ -1,8 +1,12 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { NoiseField } from "@/components/dithercn/noise-field";
+import ProjectRow from "@/components/ProjectRow.astro";
 import SectionHead from "@/components/SectionHead.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
 import { Fire } from "@/components/dithercn/fire";
+import { featuredProjects } from "@/data/projects";
 
 // Placeholder content for the design prototype.
 const experience = [
@@ -33,13 +37,6 @@ const experience = [
   },
 ];
 
-const projects = [
-  { name: "flakes", description: "nix templates for dev shells", meta: "nix" },
-  { name: "tinyq", description: "a job queue in 400 lines of Go", meta: "go" },
-  { name: "shelf", description: "self-hosted read-later app", meta: "ts" },
-  { name: "pixl", description: "dithered image exporter", meta: "rust" },
-];
-
 const writing = [
   { title: "Notes on building a job queue", date: "Oct 2026" },
   { title: "Why I moved my dev setup to Nix", date: "Aug 2026" },
@@ -56,24 +53,7 @@ const links = [
 
 <Base title="Ishak — Software Engineer" description="Software engineer building products from zero.">
   <div class="rails">
-    <header class="column top">
-      <div class="identity">
-        <div class="avatar" aria-hidden="true">IS</div>
-        <div>
-          <p class="name">Ishak Sebsib</p>
-          <p class="role">Founding Engineer, Acme Labs</p>
-        </div>
-      </div>
-      <button class="theme-toggle" type="button" aria-label="Toggle theme">
-        <svg class="moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
-          <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path>
-        </svg>
-        <svg class="sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-        </svg>
-      </button>
-    </header>
+    <SiteHeader />
 
     <section class="band">
       <NoiseField
@@ -122,16 +102,9 @@ const links = [
     <main class="content">
       <section id="projects">
         <SectionHead label="Projects" />
-        <div class="column body">
-        <ul class="rows">
-          {projects.map((project) => (
-            <li>
-              <a href="#">{project.name}</a>
-              <span class="dim">{project.description}</span>
-              <span class="meta">{project.meta}</span>
-            </li>
-          ))}
-        </ul>
+        {featuredProjects.map((project) => <ProjectRow project={project} />)}
+        <div class="column view-all">
+          <a class="button" href="/projects">View all projects</a>
         </div>
       </section>
 
@@ -186,105 +159,12 @@ const links = [
       </section>
     </main>
 
-    <footer class="column footer">
-      <span>© 2026 Ishak Sebsib</span>
-      <span>City, Country · UTC+0</span>
-    </footer>
+    <SiteFooter />
   </div>
 </Base>
 
-<script>
-  document.querySelector(".theme-toggle")?.addEventListener("click", () => {
-    const dark = document.documentElement.classList.toggle("dark");
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  });
-</script>
-
 <style>
-  .rails {
-    position: relative;
-    min-height: 100vh;
-  }
-
-  /* Thin vertical rules framing the column, full page height. */
-  .rails::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    left: 50%;
-    width: min(var(--column), 100%);
-    transform: translateX(-50%);
-    border-inline: 1px solid var(--line);
-    pointer-events: none;
-  }
-
-  .column {
-    position: relative;
-    width: min(var(--column), 100%);
-    margin-inline: auto;
-  }
-
-  .top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 56px var(--gutter) 28px;
-  }
-
-  .identity {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .avatar {
-    display: grid;
-    place-items: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--primary);
-  }
-
-  .name {
-    font-weight: 500;
-    line-height: 1.3;
-  }
-
-  .role {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.3;
-  }
-
-  .theme-toggle {
-    display: grid;
-    place-items: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid var(--line);
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-  }
-
-  .theme-toggle:hover {
-    color: var(--foreground);
-  }
-
-  .sun,
-  :global(.dark) .moon {
-    display: none;
-  }
-
-  :global(.dark) .sun {
-    display: block;
-  }
-
-  /* Full-width hatched band behind the hero frame. */
+  /* Full-width noise band behind the hero frame. */
   .band {
     position: relative;
     border-block: 1px solid var(--line);
@@ -377,6 +257,27 @@ const links = [
 
   .body {
     padding: 28px var(--gutter) 48px;
+  }
+
+  .view-all {
+    display: flex;
+    justify-content: center;
+    padding: 20px var(--gutter) 28px;
+  }
+
+  /* Primary button: solid ink, square, the one filled control on the page. */
+  .button {
+    padding: 9px 18px;
+    background: var(--foreground);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--background);
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .button:hover {
+    background: color-mix(in oklch, var(--foreground) 82%, var(--background));
   }
 
   .dim {
@@ -481,20 +382,6 @@ const links = [
     flex-shrink: 0;
     font-family: var(--font-mono);
     font-size: 11px;
-    color: var(--faint);
-  }
-
-  .footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 20px var(--gutter) 40px;
-    border-top: 1px solid var(--line);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     color: var(--faint);
   }
 

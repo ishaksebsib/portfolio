@@ -39,12 +39,20 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 - No drop shadows, gradients, or glassmorphism. The only "glow" is the accent dot halo (`box-shadow: 0 0 0 3px` tinted primary).
 - Borders are always `1px solid var(--line)`.
 
-### Lists over cards
-Content is presented as text rows, not card grids: **name** + dim one-line description + right-aligned mono meta (Projects, Writing, Connect), or the changelog **timeline** for experience. No thumbnails or images in lists unless asked.
+### Rows, never card grids
+- **Projects** use `<ProjectRow project={…} />` (`src/components/ProjectRow.astro`). Each one is a row with a `--line` rule under it, only inside the column (never full width), plus corner marks. Inside the column it has a dithercn `Avatar` icon (square, `color="--primary"`, 44px), the name (16px/500), a muted description (14px), a mono date and tag line with a calendar icon, and a ↗ arrow. The whole row is a link with a `--surface` hover. The home page shows `featuredProjects`, then a centered **View all projects** button linking to `/projects`.
+- **Experience** uses the changelog **timeline**. **Writing / Connect** use simple text rows: name, dim one-line description, right-aligned mono meta.
+- Never use card grids, rounded cards, or floating boxes. Project icons come from dithercn `Avatar`, not uploaded images, unless the user provides logos.
+
+### Pages and shared pieces
+- Every page is `<Base>` → `<div class="rails">` → `<SiteHeader />` → content → `<SiteFooter />`. `.rails` and `.column` are global (`global.css`).
+- A sub-page starts with `<SectionHead label="…" backHref="/" />`, which renders the back arrow and makes the title the page's `h1`. See `src/pages/projects.astro`.
+- Content data lives in `src/data/` (e.g. `projects.ts`: array order is the display order, curated by the user — never re-sort it; `featured` flag). Pages import it and never hardcode lists.
+- **Button:** one solid style only. `--foreground` background, `--background` text, 14px/500 sans, `9px 18px` padding, square corners. Use at most one per section.
 
 ### Dither backgrounds — dithercn only
 - All animated/texture backgrounds come from **dithercn** (https://dithercn.dev) components. **Never hand-roll** CSS hatching, noise, SVG patterns, or custom shaders — pick a dithercn component instead.
-- Currently used: `Fire` (hero, bottom of frame), `NoiseField` (the full-width band behind the hero, plus a thin strip), and the engine's static `fillStyle("hatched", …)` (section separator bands). Installed files live in `src/components/dithercn/`, and the engine is in `src/lib/dither/`.
+- Currently used: `Fire` (hero, bottom of frame), `NoiseField` (the full-width band behind the hero, plus a thin strip), the engine's static `fillStyle("hatched", …)` (section separator bands), and `Avatar` (project icons). `Avatar` is static SVG, so render it in `.astro` with **no** `client:` directive (zero JS). Its rounded corners come from Tailwind classes we don't load, so it stays square. Installed files live in `src/components/dithercn/`, and the engine is in `src/lib/dither/`.
 - **Animated** components (WebGL canvases): always hydrate with `client:visible`, size them with `style` (height), and color them with tokens (`--dither-ink` = `--primary`; quiet textures use `color="--line"`). Keep it to about 3 canvases per page.
 - **Static** textures (repeated bands, fills): use `fillStyle()` from `@/lib/dither` as an inline style in `.astro`. It renders on the server with zero JS and doesn't count toward the canvas budget.
 - To add another component, follow [reference/dithercn.md](reference/dithercn.md).
@@ -69,7 +77,7 @@ First person, plain, specific, short. What I'm building now, then "Before that: 
 - [ ] Each font used only for its role; no weight above 500; hand font used at most once
 - [ ] `--primary` used only for small accents
 - [ ] Any background/texture is dithercn: an animated component with `client:visible`, or static `fillStyle()`
-- [ ] New sections start with `<SectionHead />`
+- [ ] New sections start with `<SectionHead />`; new pages use `SiteHeader`, `SiteFooter` and data from `src/data/`
 - [ ] Checked in **both** light and dark, at desktop and ~390px phone width
 - [ ] Copy follows the voice rules
 - [ ] `pnpm check` passes; preview with `astro dev --background` (`astro dev stop` when done)

@@ -1,0 +1,86 @@
+---
+import { Avatar } from "@/components/dithercn/avatar";
+import { formatMonth, type Project } from "@/data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<!-- Rule under each row stays inside the column; corner marks sit on the rails. -->
+<div>
+  <a class="column item" href={project.href}>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <Avatar name={project.name} color="--primary" shape="square" size={44} />
+    <div class="text">
+      <h3 class="name">{project.name}</h3>
+      <p class="description">{project.description}</p>
+      <p class="meta">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <rect x="3.5" y="5" width="17" height="15.5"></rect>
+          <path d="M3.5 10h17M8 3v4M16 3v4"></path>
+        </svg>
+        <time datetime={project.date.toISOString().slice(0, 7)}>{formatMonth(project.date)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{project.meta}</span>
+      </p>
+    </div>
+    <svg class="arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <path d="M7 17 17 7M8 7h9v9"></path>
+    </svg>
+  </a>
+</div>
+
+<style>
+  .item {
+    border-bottom: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 44px 1fr 16px;
+    gap: 14px;
+    padding: 22px var(--gutter);
+    text-decoration: none;
+    transition: background-color 0.15s;
+  }
+
+  .item:hover {
+    background: var(--surface);
+  }
+
+  .name {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .description {
+    margin-top: 2px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+
+  .arrow {
+    margin-top: 3px;
+    color: var(--faint);
+    transition: color 0.15s;
+  }
+
+  .item:hover .arrow {
+    color: var(--foreground);
+  }
+</style>
