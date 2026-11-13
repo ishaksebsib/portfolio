@@ -19,9 +19,9 @@ import { featuredProjects } from "@/data/projects";
 
 const links = [
   { label: "GitHub", href: "https://github.com/ishaksebsib", handle: "@ishaksebsib" },
-  { label: "X", href: "#", handle: "@handle" },
-  { label: "LinkedIn", href: "#", handle: "in/handle" },
-  { label: "Email", href: "#", handle: "hello@example.com" },
+  { label: "X", href: "https://x.com/ishaksebsib", handle: "@ishaksebsib" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ishaksebsib", handle: "in/ishaksebsib" },
+  { label: "Email", href: "mailto:hi@ishak.io", handle: "hi@ishak.io" },
 ];
 ---
 
@@ -127,8 +127,14 @@ const links = [
         <ul class="rows">
           {links.map((link) => (
             <li>
-              <a href={link.href}>{link.label}</a>
-              <span class="meta">{link.handle}</span>
+              <a
+                class="row-link"
+                href={link.href}
+                {...(link.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+              >
+                <span class="row-label">{link.label}</span>
+                <span class="meta">{link.handle}</span>
+              </a>
             </li>
           ))}
         </ul>
@@ -345,6 +351,40 @@ const links = [
 
   .rows a:hover {
     color: var(--primary);
+  }
+
+  /* Whole row is the link; only the label takes the hover color. */
+  .rows .row-link {
+    display: flex;
+    flex: 1;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Small nudge to the right on hover. */
+  .rows .row-link:hover {
+    color: inherit;
+    transform: translateX(4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rows .row-link {
+      transition: none;
+    }
+
+    .rows .row-link:hover {
+      transform: none;
+    }
+  }
+
+  .row-link:hover .row-label {
+    color: var(--primary);
+  }
+
+  .row-link:hover .meta {
+    color: var(--muted);
   }
 
   .rows .dim {

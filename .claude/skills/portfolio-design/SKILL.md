@@ -58,7 +58,9 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 - To add another component, follow [reference/dithercn.md](reference/dithercn.md).
 
 ### Motion
-Motion belongs to the dither canvases. UI motion is limited to 0.15s color / border-color / underline transitions on hover. No scroll-triggered reveals, parallax, or bouncing.
+Motion belongs to the dither canvases. UI motion is limited to 0.15s color / border-color / underline / background transitions on hover, plus one allowed movement: link rows (e.g. Connect) nudge `translateX(4px)` over 0.2s ease-out, disabled under `prefers-reduced-motion`. No scroll-triggered reveals, parallax, or bouncing.
+
+**Links:** external `http(s)` links open in a new tab (`target="_blank" rel="noopener noreferrer"`); `mailto:` and on-site links stay in the same tab.
 
 ### Theme
 Light and dark are both first-class. Theme is the `.dark` class on `<html>`, toggled by the header button and persisted in `localStorage`. Every change must look right in both.
