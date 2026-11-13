@@ -5,7 +5,7 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 ## Contents
 - Spacing scale
 - Type sizes
-- Section label
+- Section title
 - Text rows (projects / writing / links)
 - Changelog timeline
 - Tags
@@ -18,7 +18,7 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 |---|---|
 | Column side padding | `var(--gutter)` (24px) |
 | Hero → first section head | 0. Flush, overlapping by 1px so the rules merge (`main.content` margin-top: -1px) |
-| Section head inner padding | 14px vertical |
+| Section head inner padding | 12px vertical |
 | Section body | 28px top, 48px bottom |
 | Header padding | 56px top, 28px bottom |
 | Hero frame body | 48px top, 36px bottom |
@@ -35,13 +35,13 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 | Statement | serif 400 | `clamp(22px, 4.6vw, 27px)` / 1.32 / -0.01em |
 | Name, entry title | sans 500 | 15px |
 | Role, row description | sans 400, `--muted` | 13–13.5px |
-| Section label | mono, uppercase, `--faint` | 11px / 0.12em |
+| Section title | sans 500, `--foreground`, sentence case | 16px / 1.5 / -0.01em |
 | Status line | mono, uppercase, `--muted` | 11px / 0.12em |
 | Tags | mono, uppercase, `--muted` | 10.5px / 0.1em |
 | Dates, meta, footer | mono, `--faint` | 11px (footer uppercase, 0.08em) |
 | Badge | mono, uppercase, `--primary` | 10px / 0.08em |
 
-## Section label
+## Section title
 ```astro
 <section id="projects">
   <SectionHead label="Projects" />
@@ -50,7 +50,7 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
   </div>
 </section>
 ```
-`SectionHead` renders the full-width separator band (static dithercn `hatched` fill, `--line` rules, corner marks) with the label inside the column. Labels are plain uppercase mono text. Use `/` to combine ideas ("Changelog / Experience"). Never use a large heading.
+`SectionHead` renders the full-width separator band (static dithercn `hatched` fill, `--line` rules, corner marks) with the title inside the column. Titles are 16px sans, weight 500, `--foreground`, sentence case. Use `/` to combine ideas ("Changelog / Experience"). Keep them at this size: never a large display heading, and never tiny mono (it was unreadable).
 
 ## Text rows
 ```astro

@@ -15,21 +15,21 @@ The site reads like a quiet engineering document: one narrow column, hairline ru
 - **Single centered column, `--column` (640px) wide, `--gutter` (24px) side padding.** Thin `--line` rails run down both sides of the column for the full page height. No multi-column grids, no full-bleed content sections — the narrow column is the identity.
 - Full width is allowed only for **background texture bands**: the hero's NoiseField band and the section separator bands. Content always stays inside the column.
 - The hero lives in a **bordered frame** with small square corner marks (the global `.corner .tl/.tr/.bl/.br` classes). Frames are for the hero or one special moment.
-- **Every content section starts with `<SectionHead label="…" />`** (`src/components/SectionHead.astro`). It's a full-width band with 1px `--line` rules top and bottom, dithercn's static `hatched` fill outside the column (lines, not noise: the user compared both and chose lines), the mono label inside, and corner marks where the rules meet the rails. Content follows in a `.column.body` block. Don't use cards, boxes, or other dividers.
+- **Every content section starts with `<SectionHead label="…" />`** (`src/components/SectionHead.astro`). It's a full-width band with 1px `--line` rules top and bottom, dithercn's static `hatched` fill outside the column (lines, not noise: the user compared both and chose lines), the section title inside, and corner marks where the rules meet the rails. Content follows in a `.column.body` block. Don't use cards, boxes, or other dividers.
 - See [reference/patterns.md](reference/patterns.md) for exact spacing values and copy-ready markup.
 
 ### Typography — every font has one job
 | Role | Font var | Use for |
 |---|---|---|
 | Statement | `--font-serif` (Newsreader) | Hero sentences, rare large statements. Weight 400. |
-| Body | `--font-sans` (Inter) | All reading text, names, titles. Weights 400 / 500 only. |
-| Meta | `--font-mono` (JetBrains Mono) | Section labels, dates, tags, badges, footer, handles. Small, often uppercase with letter-spacing. |
+| Body | `--font-sans` (Inter) | All reading text, names, titles, and **section titles** (16px, 500, `--foreground`, sentence case). Weights 400 / 500 only. |
+| Meta | `--font-mono` (JetBrains Mono) | Dates, tags, badges, status line, footer, handles. Small, often uppercase with letter-spacing. Never for section titles: the tiny mono labels were unreadable. |
 | Accent | `--font-hand` (Caveat) | At most **one** short phrase per page, in `--primary`. |
 
 Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+) anywhere — hierarchy comes from font role, size, and `--muted`/`--faint` color, not weight. Base size is 15px / 1.6.
 
 ### Color
-- Neutrals do almost all the work: `--foreground` for primary text, `--muted` for secondary text and descriptions, `--faint` for labels/dates/meta, `--line` for every border and rule, `--surface` for rare filled chips.
+- Neutrals do almost all the work: `--foreground` for primary text, `--muted` for secondary text and descriptions, `--faint` for dates/meta, `--line` for every border and rule, `--surface` for rare filled chips.
 - `--primary` (violet) is the **only** accent and is scarce: the status dot, the "Latest" badge, the hand-written phrase, row hover, avatar initials, and dither ink. Never use it for large text, backgrounds, or borders of content.
 - Tints come from `color-mix(in oklch, var(--primary) 12–20%, transparent)` — no new color values.
 - **Don't add new colors or tokens** without asking. Any new token must be defined in both `:root` and `.dark`.
