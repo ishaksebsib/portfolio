@@ -6,6 +6,14 @@
       <p class="role">Full Stack AI Engineer, Turing</p>
     </div>
   </a>
+  <div class="end">
+  <nav class="nav" aria-label="Sections">
+    <a href="/#projects">Projects</a>
+    <a href="/#work">Changelog</a>
+    {/* NOTE: re-enable with the Writing section. */}
+    {/* <a href="/#writing">Writing</a> */}
+    <a href="/#connect">Connect</a>
+  </nav>
   <button class="theme-toggle" type="button" aria-label="Toggle theme">
     <svg class="moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6">
       <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"></path>
@@ -15,6 +23,7 @@
       <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
     </svg>
   </button>
+  </div>
 </header>
 
 <script>
@@ -60,6 +69,45 @@
     font-size: 13px;
     color: var(--muted);
     line-height: 1.3;
+  }
+
+  .end {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+
+  /* Section links: quiet mono, same voice as the rest of the metadata. */
+  .nav {
+    display: flex;
+    gap: 16px;
+  }
+
+  .nav a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .nav a:hover {
+    color: var(--foreground);
+  }
+
+  /* Phones: identity takes the row; links + toggle drop to their own line. */
+  @media (max-width: 520px) {
+    .top {
+      flex-wrap: wrap;
+      row-gap: 16px;
+    }
+
+    .end {
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 
   .theme-toggle {

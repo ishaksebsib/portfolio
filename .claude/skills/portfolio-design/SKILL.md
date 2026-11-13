@@ -30,7 +30,7 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 
 ### Color
 - Neutrals do almost all the work: `--foreground` for primary text, `--muted` for secondary text and descriptions, `--faint` for dates/meta, `--line` for every border and rule, `--surface` for rare filled chips.
-- `--primary` (violet) is the **only** accent and is scarce: the status dot, the "Latest" badge, the hand-written phrase, row hover, avatar initials, and dither ink. Never use it for large text, backgrounds, or borders of content.
+- `--primary` (violet) is the **only** accent and is scarce: the solid primary button, the "Latest" badge, the hand-written phrase, row hover, avatar initials, and dither ink. Never use it for large text, section backgrounds, or borders of content. The one filled exception is the solid `.button` (primary action).
 - Tints come from `color-mix(in oklch, var(--primary) 12–20%, transparent)` — no new color values.
 - **Don't add new colors or tokens** without asking. Any new token must be defined in both `:root` and `.dark`.
 
@@ -48,7 +48,8 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 - Every page is `<Base>` → `<div class="rails">` → `<SiteHeader />` → content → `<SiteFooter />`. `.rails` and `.column` are global (`global.css`).
 - A sub-page starts with `<SectionHead label="…" backHref="/" />`, which renders the back arrow and makes the title the page's `h1`. See `src/pages/projects.astro`.
 - Content data lives in `src/data/` (e.g. `projects.ts`: array order is the display order, curated by the user — never re-sort it; `featured` flag). Pages import it and never hardcode lists.
-- **Button:** one solid style only. `--foreground` background, `--background` text, 14px/500 sans, `9px 18px` padding, square corners. Use at most one per section.
+- **Buttons** (global `.button` in `global.css`): square, 13.5px/500 sans, `6px 14px` padding (~32px tall). `.button` = solid `--primary` (violet) with `--background` text for the primary action; `.button.ghost` = `--line` border on `--background` for the quiet second action. At most one solid button per section; pair it with at most one ghost. Hero actions: **Book a call** (cal.com/ishak, new tab) + **Send a message** (ghost, scrolls to `#connect`).
+- **Header** (`SiteHeader`): identity on the left; on the right, mono uppercase section links (`/#projects`, `/#work`, `/#connect`, root-relative so they work from sub-pages) then the theme toggle. On phones (≤520px) the links and toggle wrap to their own line. Section navigation lives here, never as chips in the hero.
 
 ### Dither backgrounds — dithercn only
 - All animated/texture backgrounds come from **dithercn** (https://dithercn.dev) components. **Never hand-roll** CSS hatching, noise, SVG patterns, or custom shaders — pick a dithercn component instead.

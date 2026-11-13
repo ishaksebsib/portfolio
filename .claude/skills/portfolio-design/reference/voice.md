@@ -14,6 +14,6 @@ The site talks like a person writing a short note, not like a product page.
 ## Examples
 | Don't | Do |
 |---|---|
-| "Passionate full-stack developer crafting innovative digital experiences" | "I'm Ishak, a Full-stack engineer. I'm curious by nature, so I work across the whole stack…" |
+| "Passionate full-stack developer crafting innovative digital experiences" | "I'm Ishak, a Full-stack engineer. I'm curious by nature, working across the whole stack…" |
 | "Worked on various AI projects" | "Own AI product features end to end for client platforms serving 50k+ monthly users." |
 | "Check out my amazing projects below!" | (Nothing. The Projects label is enough.) |

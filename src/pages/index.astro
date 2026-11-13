@@ -47,7 +47,7 @@ const links = [
         <div class="frame-body">
           <h1 class="statement">I'm Ishak, a Full-stack engineer.</h1>
           <p class="statement muted">
-            I'm <span class="hand">curious by nature</span>, so I work across the whole stack, from
+            I'm <span class="hand">curious by nature</span>, working across the whole stack, from
             low-level systems to full-stack apps, with a soft spot for developer tools.
           </p>
           <p class="now">
@@ -58,13 +58,12 @@ const links = [
             <a href="https://github.com/tursodatabase" target="_blank" rel="noopener noreferrer">Turso</a>, and{" "}
             <a href="https://github.com/HelixDB/helix-db" target="_blank" rel="noopener noreferrer">HelixDB</a>.
           </p>
-          <nav class="tags" aria-label="Sections">
-            <a href="#projects">Projects</a>
-            <a href="#work">Changelog</a>
-            {/* NOTE: re-enable with the Writing section. */}
-            {/* <a href="#writing">Writing</a> */}
-            <a href="#connect">Connect</a>
-          </nav>
+          <div class="actions">
+            <a class="button" href="https://cal.com/ishak" target="_blank" rel="noopener noreferrer">
+              Book a call
+            </a>
+            <a class="button ghost" href="#connect">Send a message</a>
+          </div>
         </div>
 
         <Fire client:visible cell={4} height={0.8} style={{ height: "150px" }} />
@@ -213,28 +212,11 @@ const links = [
     color: var(--primary);
   }
 
-  .tags {
+  .actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
     margin-top: 28px;
-  }
-
-  .tags a {
-    padding: 4px 9px;
-    border: 1px solid var(--line);
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--muted);
-    transition: color 0.15s, border-color 0.15s;
-  }
-
-  .tags a:hover {
-    color: var(--foreground);
-    border-color: var(--faint);
   }
 
   /* Sit flush under the hero; overlap 1px so the two border rules merge. */
@@ -252,20 +234,6 @@ const links = [
     padding: 20px var(--gutter) 28px;
   }
 
-  /* Primary button: solid ink, square, the one filled control on the page. */
-  .button {
-    padding: 9px 18px;
-    background: var(--foreground);
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--background);
-    text-decoration: none;
-    transition: background-color 0.15s;
-  }
-
-  .button:hover {
-    background: color-mix(in oklch, var(--foreground) 82%, var(--background));
-  }
 
   .dim {
     color: var(--muted);

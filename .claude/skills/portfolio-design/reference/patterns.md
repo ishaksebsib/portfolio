@@ -70,7 +70,7 @@ Exact values used in `src/pages/index.astro`. Reuse them so sections share one r
 ## Changelog timeline
 A 3-column grid: `92px` date | `20px` node | content. A 1px `--line` vertical rule connects the nodes. The current role gets `.latest`: a filled primary node with a halo, plus a `Latest` badge before the title. Title format: **Role** `· Company` (company in `--muted`). Below 520px, the date moves above the content.
 
-## Tags
+## Tags (retired: section links moved to the header)
 Small bordered mono chips that link to on-page anchors. Padding `4px 9px`, `1px solid var(--line)`, square. On hover, text becomes `--foreground` and the border becomes `--faint`.
 
 ## Status line (retired)
@@ -80,7 +80,7 @@ Small bordered mono chips that link to on-page anchors. Padding `4px 9px`, `1px 
 ```
 band (full width, NoiseField behind, 1px --line top/bottom)
 └─ .column.frame (background fill, --line side borders, 4 corner squares)
-   ├─ .frame-body: intro statement (serif, h1) "I'm Ishak, a Full-stack engineer." → muted serif line that carries the one hand phrase inline as the reason for the breadth: "I'm *curious by nature*, so I work across the whole stack…" (`.hand`: `--font-hand`, `--primary`) → muted serif line (what I do, ~21px) → `.now` note (15px sans, `--muted`, linked names: what I'm on right now) → tags
+   ├─ .frame-body: intro statement (serif, h1) "I'm Ishak, a Full-stack engineer." → muted serif line that carries the one hand phrase inline as the reason for the breadth: "I'm *curious by nature*, working across the whole stack…" (`.hand`: `--font-hand`, `--primary`) → muted serif line (what I do, ~21px) → `.now` note (15px sans, `--muted`, linked names: what I'm on right now) → actions (Book a call + Send a message buttons)
    ├─ <Fire client:visible cell={4} height={0.8} style={{height: "150px"}} />
    └─ thin NoiseField strip (28px, top border)
 ```

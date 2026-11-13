@@ -105,6 +105,36 @@ ol {
   margin-inline: auto;
 }
 
+/* Buttons: square, sans 13.5/500, ~32px tall. Solid accent is the primary action; ghost is the quiet second. */
+.button {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--background);
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.button:hover {
+  border-color: color-mix(in oklch, var(--primary) 85%, var(--foreground));
+  background: color-mix(in oklch, var(--primary) 85%, var(--foreground));
+}
+
+.button.ghost {
+  border-color: var(--line);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.button.ghost:hover {
+  border-color: var(--faint);
+  background: var(--surface);
+}
+
 /* Square marks where a frame's borders meet the rails. Parent must be positioned. */
 .corner {
   position: absolute;
