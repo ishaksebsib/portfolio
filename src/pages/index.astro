@@ -1,7 +1,7 @@
 ---
 import Base from "@/layouts/Base.astro";
 import { NoiseField } from "@/components/dithercn/noise-field";
-import { Waves } from "@/components/dithercn/waves";
+import { Fire } from "@/components/dithercn/fire";
 
 // Placeholder content for the design prototype.
 const experience = [
@@ -107,14 +107,7 @@ const links = [
           </nav>
         </div>
 
-        <Waves
-          client:visible
-          layers={5}
-          amplitude={1.4}
-          horizon={0.7}
-          cell={4}
-          style={{ height: "150px" }}
-        />
+        <Fire client:visible cell={4} height={0.8} style={{ height: "150px" }} />
         <NoiseField
           client:visible
           color="--line"
