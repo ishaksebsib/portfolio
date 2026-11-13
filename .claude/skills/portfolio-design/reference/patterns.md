@@ -99,9 +99,10 @@ A single mono row, uppercase, `--faint`: `© YEAR NAME` on the left and `City, C
 | Part | Value |
 |---|---|
 | Row padding | 22px vertical, `--gutter` horizontal |
-| Grid | `44px 1fr 16px`, 14px gap |
+| Grid | `44px 1fr`, 14px gap; title line is `name … [stats] ↗` (space-between) |
 | Icon | dithercn `Avatar`, 44px, square, `--primary` |
 | Name | sans 500, 16px, -0.01em |
 | Description | sans 400, 14px / 1.5, `--muted`, may wrap |
-| Date line | mono 11px, uppercase, 0.06em, `--faint`, 13px calendar icon, `MON YYYY · tag` |
+| Stats (title line, right) | mono 11px tabular-nums, `--muted` numbers, 11px `--faint` SVG icons (star, download), 14px gaps, then the ↗ arrow; all share one right edge, centered on the name. Language shows here when stars < 50 / API fails. Never the ★ glyph. Never put stats in a separate column or reserve empty slots, it breaks the right edge. |
+| Role line | mono 11px, uppercase, 0.06em, `--faint`, role only |
 | View-all row | 20px top / 28px bottom, centered button |

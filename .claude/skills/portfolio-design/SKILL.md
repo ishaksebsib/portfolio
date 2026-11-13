@@ -40,7 +40,7 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 - Borders are always `1px solid var(--line)`.
 
 ### Rows, never card grids
-- **Projects** use `<ProjectRow project={…} />` (`src/components/ProjectRow.astro`). Each one is a row with a `--line` rule under it, only inside the column (never full width), plus corner marks. Inside the column it has a dithercn `Avatar` icon (square, `color="--primary"`, 44px), the name (16px/500), a muted description (14px), a mono date and tag line with a calendar icon, and a ↗ arrow. The whole row is a link with a `--surface` hover. The home page shows `featuredProjects`, then a centered **View all projects** button linking to `/projects`.
+- **Projects** use `<ProjectRow project={…} />` (`src/components/ProjectRow.astro`). Each one is a row with a `--line` rule under it, only inside the column (never full width), plus corner marks. Inside the column it has a dithercn `Avatar` icon (square, `color="--primary"`, 44px), the name (16px/500), a muted description (14px), stats (★ stars, ↓ downloads; live GitHub/crates.io numbers fetched at build time by `src/lib/stats.ts`; stars under 50 hidden) right-aligned on the name line next to the ↗ arrow, and a mono role line underneath. Never show dates. The whole row is a link with a `--surface` hover. The home page shows `featuredProjects`, then a centered **View all projects** button linking to `/projects`.
 - **Experience** uses the changelog **timeline**. **Writing / Connect** use simple text rows: name, dim one-line description, right-aligned mono meta.
 - Never use card grids, rounded cards, or floating boxes. Project icons come from dithercn `Avatar`, not uploaded images, unless the user provides logos.
 

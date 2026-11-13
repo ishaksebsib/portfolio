@@ -1,12 +1,20 @@
 ---
 import { Avatar } from "@/components/dithercn/avatar";
-import { formatMonth, type Project } from "@/data/projects";
+import { MIN_STARS, type Project } from "@/data/projects";
+import { compactNumber, crateDownloads, githubStars } from "@/lib/stats";
 
 interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
+
+// Role on the left; traction on the right, or the language when there's none worth showing.
+const [stars, downloads] = await Promise.all([
+  project.repo ? githubStars(project.repo) : undefined,
+  project.crate ? crateDownloads(project.crate) : undefined,
+]);
+const showStars = stars !== undefined && stars >= MIN_STARS;
 ---
 
 <!-- Rule under each row stays inside the column; corner marks sit on the rails. -->
@@ -15,21 +23,35 @@ const { project } = Astro.props;
     <span class="corner bl"></span><span class="corner br"></span>
     <Avatar name={project.name} color="--primary" shape="square" size={44} />
     <div class="text">
-      <h3 class="name">{project.name}</h3>
+      <div class="title">
+        <h3 class="name">{project.name}</h3>
+        <!-- Stats share the title line and one right edge with the arrow. -->
+        <span class="aside">
+          {showStars && (
+            <span class="stat" title={`${stars} GitHub stars`}>
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true">
+                <path d="m12 2.5 2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"></path>
+              </svg>
+              {compactNumber(stars)}<span class="sr-only"> stars</span>
+            </span>
+          )}
+          {downloads !== undefined && (
+            <span class="stat" title={`${downloads} downloads on crates.io`}>
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                <path d="M12 3v12M6.5 9.5 12 15l5.5-5.5M4 20h16"></path>
+              </svg>
+              {compactNumber(downloads)}<span class="sr-only"> downloads</span>
+            </span>
+          )}
+          {!showStars && downloads === undefined && project.language && <span class="stat">{project.language}</span>}
+          <svg class="arrow" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M7 17 17 7M8 7h9v9"></path>
+          </svg>
+        </span>
+      </div>
       <p class="description">{project.description}</p>
-      <p class="meta">
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-          <rect x="3.5" y="5" width="17" height="15.5"></rect>
-          <path d="M3.5 10h17M8 3v4M16 3v4"></path>
-        </svg>
-        <time datetime={project.date.toISOString().slice(0, 7)}>{formatMonth(project.date)}</time>
-        <span aria-hidden="true">·</span>
-        <span>{project.meta}</span>
-      </p>
+      <p class="meta">{project.role}</p>
     </div>
-    <svg class="arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
-      <path d="M7 17 17 7M8 7h9v9"></path>
-    </svg>
   </a>
 </div>
 
@@ -37,7 +59,7 @@ const { project } = Astro.props;
   .item {
     border-bottom: 1px solid var(--line);
     display: grid;
-    grid-template-columns: 44px 1fr 16px;
+    grid-template-columns: 44px 1fr;
     gap: 14px;
     padding: 22px var(--gutter);
     text-decoration: none;
@@ -48,11 +70,48 @@ const { project } = Astro.props;
     background: var(--surface);
   }
 
+  .text {
+    min-width: 0;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
   .name {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.35;
     letter-spacing: -0.01em;
+  }
+
+  /* Stats + arrow: one right edge, vertically centered on the name. */
+  .aside {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .stat svg {
+    flex-shrink: 0;
+    color: var(--faint);
   }
 
   .description {
@@ -63,19 +122,26 @@ const { project } = Astro.props;
   }
 
   .meta {
-    display: flex;
-    align-items: center;
-    gap: 6px;
     margin-top: 8px;
     font-family: var(--font-mono);
     font-size: 11px;
+    line-height: 1;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--faint);
   }
 
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
   .arrow {
-    margin-top: 3px;
+    flex-shrink: 0;
     color: var(--faint);
     transition: color 0.15s;
   }
