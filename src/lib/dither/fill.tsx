@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import type { ComponentProps, CSSProperties } from "react";
 
 import type { DitherMatrix } from "@/lib/dither/matrices";
 import { DitherPattern } from "@/lib/dither/pattern";
@@ -138,7 +138,7 @@ export interface BloomGroupProps extends ComponentProps<"g"> {
 export const BloomGroup = ({ bloom, style, ...props }: BloomGroupProps) => {
   const layer = bloomLayerStyle(bloom);
   return layer === undefined ? null : (
-    <g aria-hidden="true" {...props} style={{ ...layer, ...style }} />
+    <g aria-hidden="true" {...props} style={{ ...layer, ...(style as CSSProperties) }} />
   );
 };
 
@@ -158,6 +158,6 @@ export const BloomBox = ({
   style,
   ...props
 }: BloomBoxProps) => (
-  <div {...props} style={{ filter: bloomFilter(color, bloom), ...style }} />
+  <div {...props} style={{ filter: bloomFilter(color, bloom), ...(style as CSSProperties) }} />
 );
 

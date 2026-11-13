@@ -11,10 +11,10 @@
   --dither-paper: var(--background);
   --dither-cell: 4px;
 
-  --font-serif: "Newsreader", Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-hand: "Caveat", cursive;
+  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-hand: var(--font-caveat);
 
   --column: 640px;
   --gutter: 24px;

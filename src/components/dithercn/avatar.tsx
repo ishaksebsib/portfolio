@@ -280,7 +280,7 @@ export const Avatar = ({
     boxShadow: `${outline}${ringShadow}`,
     height: size ?? "var(--avatar-size, 40px)",
     width: size ?? "var(--avatar-size, 40px)",
-    ...style,
+    ...(style as CSSProperties),
   };
   const accessibleName = `${label ?? name}${status ? `, ${STATUS_LABEL[status]}` : ""}`;
   return (
@@ -360,7 +360,7 @@ export const AvatarGroup = ({
     "--avatar-outline": outline,
     "--avatar-outline-width": "2px",
     "--avatar-size": `${size}px`,
-    ...style,
+    ...(style as CSSProperties),
   };
   return (
     <div

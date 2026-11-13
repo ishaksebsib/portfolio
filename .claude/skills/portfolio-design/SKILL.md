@@ -78,7 +78,7 @@ First person, plain, specific and short, like talking to someone rather than rea
 
 ### Tech constraints
 - Astro components with scoped styles and plain CSS. **No Tailwind, UI kits or CSS-in-JS.** A tiny `cn()` exists only because dithercn expects it.
-- React is used only for dithercn islands. Everything else ships zero client JavaScript.
+- dithercn components are React code, run through **Preact in compat mode** (much smaller than React). Islands are the only client JavaScript; everything else ships none. Never reintroduce React.
 - Add dependencies only when they're truly needed, and ask first.
 
 ## Before finishing any UI work

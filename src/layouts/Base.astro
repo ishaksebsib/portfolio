@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import "@/styles/global.css";
 
 interface Props {
@@ -7,6 +8,21 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Structured data so search engines connect the site to the person and profiles.
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ishak Sebsib",
+  url: Astro.site?.href,
+  jobTitle: "Full-stack engineer",
+  sameAs: [
+    "https://github.com/ishaksebsib",
+    "https://x.com/ishaksebsib",
+    "https://www.linkedin.com/in/ishaksebsib",
+  ],
+};
 ---
 
 <!doctype html>
@@ -14,16 +30,31 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap"
-    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ishak Sebsib" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ishaksebsib" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+    <!-- Only the above-the-fold faces are preloaded; mono and hand load on demand. -->
+    <Font cssVariable="--font-newsreader" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-caveat" />
 
     <script is:inline>
       const stored = localStorage.getItem("theme");
