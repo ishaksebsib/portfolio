@@ -1,0 +1,416 @@
+---
+import Base from "@/layouts/Base.astro";
+import { NoiseField } from "@/components/dithercn/noise-field";
+import ProjectRow from "@/components/ProjectRow.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import { Fire } from "@/components/dithercn/fire";
+import { experience, formatPeriod } from "@/data/experience";
+import { featuredProjects } from "@/data/projects";
+
+// NOTE: Writing section is disabled until the blog exists. Re-enable this data,
+// the "Writing" hero tag, and the <section id="writing"> block below together.
+// const writing = [
+//   { title: "Notes on building a job queue", date: "Oct 2026" },
+//   { title: "Why I moved my dev setup to Nix", date: "Aug 2026" },
+//   { title: "Small tools, sharp edges", date: "May 2026" },
+// ];
+
+const links = [
+  { label: "GitHub", href: "https://github.com/ishaksebsib", handle: "@ishaksebsib" },
+  { label: "X", href: "https://x.com/ishaksebsib", handle: "@ishaksebsib" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/ishaksebsib", handle: "in/ishaksebsib" },
+  { label: "Email", href: "mailto:hi@ishak.io", handle: "hi@ishak.io" },
+];
+---
+
+<Base
+  title="Ishak Sebsib · Full-stack Engineer"
+  description="Full-stack engineer building aisdk, the AI toolkit for Rust, and contributing to open source at Vercel, Turso, and HelixDB."
+>
+  <div class="rails">
+    <SiteHeader />
+
+    <section class="band">
+      <NoiseField
+        client:visible
+        color="--line"
+        intensity={0.9}
+        scale={1.6}
+        style={{ position: "absolute", inset: 0 }}
+      />
+      <div class="column frame">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+
+        <div class="frame-body">
+          <h1 class="statement">I'm Ishak, a Full-stack engineer.</h1>
+          <p class="statement muted">
+            I'm <span class="hand">curious by nature</span>, working across the whole stack, from
+            low-level systems to full-stack apps, with a soft spot for developer tools.
+          </p>
+          <p class="now">
+            Right now I'm building{" "}
+            <a href="https://aisdk.rs/" target="_blank" rel="noopener noreferrer">aisdk</a>, the AI toolkit
+            for Rust, and contributing to open source at{" "}
+            <a href="https://github.com/vercel" target="_blank" rel="noopener noreferrer">Vercel</a>,{" "}
+            <a href="https://github.com/tursodatabase" target="_blank" rel="noopener noreferrer">Turso</a>, and{" "}
+            <a href="https://github.com/HelixDB/helix-db" target="_blank" rel="noopener noreferrer">HelixDB</a>.
+          </p>
+          <div class="actions">
+            <a class="button" href="https://cal.com/ishak" target="_blank" rel="noopener noreferrer">
+              Book a call
+            </a>
+            <a class="button ghost" href="#connect">Send a message</a>
+          </div>
+        </div>
+
+        <Fire client:visible cell={4} height={0.8} style={{ height: "150px" }} />
+        <NoiseField
+          client:visible
+          color="--line"
+          intensity={0.9}
+          scale={3}
+          style={{ height: "28px", borderTop: "1px solid var(--line)" }}
+        />
+      </div>
+    </section>
+
+    <main class="content">
+      <section id="projects">
+        <SectionHead label="Projects" />
+        {featuredProjects.map((project) => <ProjectRow project={project} />)}
+        <div class="column view-all">
+          <a class="button" href="/projects" data-astro-prefetch>View all projects</a>
+        </div>
+      </section>
+
+      <section id="work">
+        <SectionHead label="Changelog / Experience" />
+        <div class="column body">
+        <ol class="timeline">
+          {experience.map((job) => (
+            <li class:list={["entry", { latest: !job.end }]}>
+              <span class="period">{formatPeriod(job)}</span>
+              <span class="node" aria-hidden="true"></span>
+              <div>
+                <p class="entry-title">
+                  {!job.end && <span class="badge">Latest</span>}
+                  <strong>{job.role}</strong>
+                  <span class="dim"> · {job.company}</span>
+                </p>
+                <p class="dim">{job.summary}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        </div>
+      </section>
+
+      {/* NOTE: Writing section disabled until the blog exists (see `writing` in the frontmatter).
+      <section id="writing">
+        <SectionHead label="Writing" />
+        <div class="column body">
+        <ul class="rows">
+          {writing.map((post) => (
+            <li>
+              <a href="#">{post.title}</a>
+              <span class="meta">{post.date}</span>
+            </li>
+          ))}
+        </ul>
+        </div>
+      </section>
+      */}
+
+      <section id="connect">
+        <SectionHead label="Connect" glow />
+        <div class="column body">
+        <ul class="rows">
+          {links.map((link) => (
+            <li>
+              <a
+                class="row-link"
+                href={link.href}
+                {...(link.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
+              >
+                <span class="row-label">{link.label}</span>
+                <span class="meta">{link.handle}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        </div>
+      </section>
+    </main>
+
+    <SiteFooter />
+  </div>
+</Base>
+
+<script>
+  // Flash the Connect section whenever it's the jump target, so it's clear
+  // where the page landed (Experience and Connect share one viewport).
+  const flashConnect = () => {
+    const section = document.getElementById("connect");
+    if (!section) return;
+    section.classList.remove("flash");
+    void section.offsetWidth; // restart the animation on repeat clicks
+    section.classList.add("flash");
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = (event.target as Element).closest('a[href$="#connect"]');
+    if (link) flashConnect();
+  });
+
+  if (location.hash === "#connect") flashConnect();
+</script>
+
+<style>
+  /* Full-width noise band behind the hero frame. */
+  .band {
+    position: relative;
+    border-block: 1px solid var(--line);
+  }
+
+  .frame {
+    background: var(--background);
+    border-inline: 1px solid var(--line);
+  }
+
+  .frame-body {
+    padding: 48px var(--gutter) 36px;
+  }
+
+
+  .statement {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 4.6vw, 27px);
+    font-weight: 400;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+  }
+
+  .statement + .statement {
+    margin-top: 14px;
+  }
+
+  /* "Right now" note: body-size sans so the names read as details, not headlines. */
+  .now {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--muted);
+  }
+
+  /* Inline links read as links, Leo-style: visible underline, ink on hover. */
+  .now a,
+  .statement a {
+    text-decoration-color: var(--faint);
+    text-underline-offset: 4px;
+  }
+
+  .now a:hover,
+  .statement a:hover {
+    color: var(--foreground);
+    text-decoration-color: var(--foreground);
+  }
+
+  .statement.muted {
+    font-size: clamp(19px, 3.8vw, 21px);
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  .hand {
+    white-space: nowrap;
+    font-family: var(--font-hand);
+    font-size: 1.2em;
+    color: var(--primary);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+
+  /* Sit flush under the hero; overlap 1px so the two border rules merge. */
+  .content {
+    margin-top: -1px;
+  }
+
+  .body {
+    padding: 28px var(--gutter) 48px;
+  }
+
+  .view-all {
+    display: flex;
+    justify-content: center;
+    padding: 20px var(--gutter) 28px;
+  }
+
+
+  .dim {
+    color: var(--muted);
+  }
+
+  .timeline {
+    display: grid;
+  }
+
+  .entry {
+    position: relative;
+    display: grid;
+    grid-template-columns: 92px 20px 1fr;
+    padding-bottom: 22px;
+  }
+
+  /* Vertical line connecting the timeline nodes. */
+  .entry::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    bottom: 0;
+    left: 101px;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .entry:last-child::before {
+    display: none;
+  }
+
+  .period {
+    padding-top: 3px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+    text-transform: uppercase;
+  }
+
+  .node {
+    width: 7px;
+    height: 7px;
+    margin: 8px 0 0 7px;
+    border: 1px solid var(--faint);
+    border-radius: 50%;
+    background: var(--background);
+  }
+
+  .latest .node {
+    border-color: var(--primary);
+    background: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 20%, transparent);
+  }
+
+  .entry-title strong {
+    font-weight: 500;
+  }
+
+  .badge {
+    margin-right: 8px;
+    padding: 1px 6px;
+    background: color-mix(in oklch, var(--primary) 12%, transparent);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    vertical-align: 1px;
+  }
+
+  .rows {
+    display: grid;
+    gap: 10px;
+  }
+
+  .rows li {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .rows a {
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .rows a:hover {
+    color: var(--primary);
+  }
+
+  /* Whole row is the link; only the label takes the hover color. */
+  .rows .row-link {
+    display: flex;
+    flex: 1;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+    transition: transform 0.2s ease-out;
+  }
+
+  /* Small nudge to the right on hover. */
+  .rows .row-link:hover {
+    color: inherit;
+    transform: translateX(4px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rows .row-link {
+      transition: none;
+    }
+
+    .rows .row-link:hover {
+      transform: none;
+    }
+  }
+
+  .row-link:hover .row-label {
+    color: var(--primary);
+  }
+
+  .row-link:hover .meta {
+    color: var(--muted);
+  }
+
+  .rows .dim {
+    overflow: hidden;
+    font-size: 13.5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .meta {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+
+  @media (max-width: 520px) {
+    .entry {
+      grid-template-columns: 20px 1fr;
+    }
+
+    .period {
+      grid-column: 2;
+      padding-top: 0;
+    }
+
+    .node {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+    }
+
+    .entry::before {
+      left: 10px;
+    }
+  }
+</style>

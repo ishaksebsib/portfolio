@@ -1,0 +1,105 @@
+---
+import { fillStyle } from "@/lib/dither";
+
+interface Props {
+  label: string;
+  /** Adds a back arrow linking here, for sub-pages. */
+  backHref?: string;
+  /** Title box flashes a violet dither when the parent section gets the `.flash` class. */
+  glow?: boolean;
+}
+
+const { label, backHref, glow } = Astro.props;
+const Heading = backHref ? "h1" : "h2";
+---
+
+<div class="head">
+  <div class="texture" style={fillStyle("hatched", { color: "--line", cell: 3 })}></div>
+  <div class="column inner">
+    {glow && <div class="glow" style={fillStyle("dotted", { color: "--primary", cell: 3 })} aria-hidden="true"></div>}
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    {backHref && (
+      <a class="back" href={backHref} aria-label="Back">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M19 12H5M11 6l-6 6 6 6"></path>
+        </svg>
+      </a>
+    )}
+    <Heading class="label">{label}</Heading>
+  </div>
+</div>
+
+<style>
+  /* Full-width separator band: dithered texture outside, label inside the column. */
+  .head {
+    position: relative;
+    border-block: 1px solid var(--line);
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+  }
+
+  .inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px var(--gutter);
+    border-inline: 1px solid var(--line);
+    background: var(--background);
+  }
+
+  .back {
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    transition: color 0.15s;
+  }
+
+  .back:hover {
+    color: var(--foreground);
+  }
+
+  /* Arrival glow: violet dither fills the title box, then fades. Brighter than the textures. */
+  .glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :global(.flash) .glow {
+    animation: glow 2s ease-out;
+  }
+
+  @keyframes glow {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    45% { opacity: 0.85; }
+    100% { opacity: 0; }
+  }
+
+  /* Title sits on its own patch of page background, so the glow frames it instead of crossing it. */
+  .back,
+  .label {
+    position: relative;
+    z-index: 1;
+    background: var(--background);
+  }
+
+  .label {
+    margin-left: -8px;
+    padding-inline: 8px;
+  }
+
+  .label {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProjectRow from "@/components/ProjectRow.astro";
+import SectionHead from "@/components/SectionHead.astro";
+import SiteFooter from "@/components/SiteFooter.astro";
+import SiteHeader from "@/components/SiteHeader.astro";
+import { projects } from "@/data/projects";
+---
+
+<Base title="Projects · Ishak Sebsib" description="Things I've built and contributed to.">
+  <div class="rails">
+    <SiteHeader />
+    <main>
+      <SectionHead label="Projects" backHref="/" />
+      {projects.map((project) => <ProjectRow project={project} />)}
+      <div class="spacer"></div>
+    </main>
+    <SiteFooter />
+  </div>
+</Base>
+
+<style>
+  .spacer {
+    height: 72px;
+  }
+</style>

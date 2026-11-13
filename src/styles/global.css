@@ -1,0 +1,207 @@
+:root {
+  --background: #fbfbf9;
+  --foreground: #19181a;
+  --muted: #76757a;
+  --faint: #a3a2a6;
+  --line: #e6e4e0;
+  --surface: #f3f2ef;
+  --primary: oklch(0.52 0.21 285);
+
+  --dither-ink: var(--primary);
+  --dither-paper: var(--background);
+  --dither-cell: 4px;
+
+  --font-serif: var(--font-newsreader);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-hand: var(--font-caveat);
+
+  --column: 640px;
+  --gutter: 24px;
+
+  color-scheme: light;
+}
+
+.dark {
+  --background: #111110;
+  --foreground: #ecebe8;
+  --muted: #8d8c88;
+  --faint: #5e5d5a;
+  --line: #252422;
+  --surface: #191817;
+  --primary: oklch(0.7 0.16 285);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.15s;
+}
+
+a:hover {
+  text-decoration-color: var(--foreground);
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+/* Page shell: thin vertical rules framing the column, full page height. */
+.rails {
+  position: relative;
+  min-height: 100vh;
+}
+
+.rails::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: 50%;
+  width: min(var(--column), 100%);
+  transform: translateX(-50%);
+  border-inline: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.column {
+  position: relative;
+  width: min(var(--column), 100%);
+  margin-inline: auto;
+}
+
+/* Buttons: square, sans 13.5/500, ~32px tall. Solid accent is the primary action; ghost is the quiet second. */
+.button {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--background);
+  text-decoration: none;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.button:hover {
+  border-color: color-mix(in oklch, var(--primary) 85%, var(--foreground));
+  background: color-mix(in oklch, var(--primary) 85%, var(--foreground));
+}
+
+.button.ghost {
+  border-color: var(--line);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.button.ghost:hover {
+  border-color: var(--faint);
+  background: var(--surface);
+}
+
+/* Square marks where a frame's borders meet the rails. Parent must be positioned. */
+.corner {
+  position: absolute;
+  z-index: 1;
+  width: 7px;
+  height: 7px;
+  background: var(--background);
+  border: 1px solid var(--faint);
+}
+
+.corner.tl { top: -4px; left: -4px; }
+.corner.tr { top: -4px; right: -4px; }
+.corner.bl { bottom: -4px; left: -4px; }
+.corner.br { bottom: -4px; right: -4px; }
+
+/* Plain-CSS stand-ins for the Tailwind classes the dithercn engine emits. */
+.group\/dither {
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.group\/dither > canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  opacity: 1;
+  image-rendering: pixelated;
+  transition: opacity 0.7s ease-out;
+}
+
+.group\/dither[data-state="fallback"] > canvas {
+  opacity: 0;
+  transition-duration: 0s;
+}
+
+.group\/dither > [data-dither-fallback] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0s 0.7s;
+}
+
+.group\/dither[data-state="fallback"] > [data-dither-fallback] {
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.group\/dither .absolute.inset-0 {
+  position: absolute;
+  inset: 0;
+}
+
+[data-slot="avatar"] {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+[data-slot="avatar"] > svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group\/dither > canvas {
+    transition: none;
+  }
+}

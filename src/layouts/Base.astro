@@ -1,0 +1,68 @@
+---
+import { Font } from "astro:assets";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// Structured data so search engines connect the site to the person and profiles.
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ishak Sebsib",
+  url: Astro.site?.href,
+  jobTitle: "Full-stack engineer",
+  sameAs: [
+    "https://github.com/ishaksebsib",
+    "https://x.com/ishaksebsib",
+    "https://www.linkedin.com/in/ishaksebsib",
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <meta name="theme-color" content="#fbfbf9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ishak Sebsib" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ishaksebsib" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+
+    <!-- Only the above-the-fold faces are preloaded; mono and hand load on demand. -->
+    <Font cssVariable="--font-newsreader" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-caveat" />
+
+    <script is:inline>
+      const stored = localStorage.getItem("theme");
+      const dark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

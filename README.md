@@ -2,14 +2,14 @@
 
 Welcome to my Portfolio.
 
-### Live Demo
+### Live
 
 [ishak.io](https://ishak.io)
 
 ### Local Development
 
 ```bash
-bun install
+pnpm install
 
-bun run dev
+pnpm run dev
 ```
