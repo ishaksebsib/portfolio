@@ -59,7 +59,7 @@ Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+)
 - To add another component, follow [reference/dithercn.md](reference/dithercn.md).
 
 ### Motion
-Motion belongs to the dither canvases. UI motion is limited to 0.15s color / border-color / underline / background transitions on hover, plus one allowed movement: link rows (e.g. Connect) nudge `translateX(4px)` over 0.2s ease-out, disabled under `prefers-reduced-motion`. No scroll-triggered reveals, parallax, or bouncing.
+Motion belongs to the dither canvases. UI motion is limited to 0.15s color / border-color / underline / background transitions on hover, plus one allowed movement: link rows (e.g. Connect) nudge `translateX(4px)` over 0.2s ease-out, disabled under `prefers-reduced-motion`. One arrival cue: when a link jumps to `#connect`, its **title box** flashes a violet dithercn `fillStyle("dotted")` glow (`<SectionHead glow />`; opacity 0 → 1 → 0 over 2s). A small script in `index.astro` adds the `.flash` class to the section. Only the title box glows, never the list under it. No scroll-triggered reveals, parallax, or bouncing.
 
 **Links:** external `http(s)` links open in a new tab (`target="_blank" rel="noopener noreferrer"`); `mailto:` and on-site links stay in the same tab.
 

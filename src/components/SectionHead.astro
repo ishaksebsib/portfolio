@@ -5,15 +5,18 @@ interface Props {
   label: string;
   /** Adds a back arrow linking here, for sub-pages. */
   backHref?: string;
+  /** Title box flashes a violet dither when the parent section gets the `.flash` class. */
+  glow?: boolean;
 }
 
-const { label, backHref } = Astro.props;
+const { label, backHref, glow } = Astro.props;
 const Heading = backHref ? "h1" : "h2";
 ---
 
 <div class="head">
   <div class="texture" style={fillStyle("hatched", { color: "--line", cell: 3 })}></div>
   <div class="column inner">
+    {glow && <div class="glow" style={fillStyle("dotted", { color: "--primary", cell: 3 })} aria-hidden="true"></div>}
     <span class="corner tl"></span><span class="corner tr"></span>
     <span class="corner bl"></span><span class="corner br"></span>
     {backHref && (
@@ -57,6 +60,38 @@ const Heading = backHref ? "h1" : "h2";
 
   .back:hover {
     color: var(--foreground);
+  }
+
+  /* Arrival glow: violet dither fills the title box, then fades. Brighter than the textures. */
+  .glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  :global(.flash) .glow {
+    animation: glow 2s ease-out;
+  }
+
+  @keyframes glow {
+    0% { opacity: 0; }
+    15% { opacity: 1; }
+    45% { opacity: 0.85; }
+    100% { opacity: 0; }
+  }
+
+  /* Title sits on its own patch of page background, so the glow frames it instead of crossing it. */
+  .back,
+  .label {
+    position: relative;
+    z-index: 1;
+    background: var(--background);
+  }
+
+  .label {
+    margin-left: -8px;
+    padding-inline: 8px;
   }
 
   .label {

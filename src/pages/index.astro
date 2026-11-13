@@ -125,7 +125,7 @@ const links = [
       */}
 
       <section id="connect">
-        <SectionHead label="Connect" />
+        <SectionHead label="Connect" glow />
         <div class="column body">
         <ul class="rows">
           {links.map((link) => (
@@ -148,6 +148,25 @@ const links = [
     <SiteFooter />
   </div>
 </Base>
+
+<script>
+  // Flash the Connect section whenever it's the jump target, so it's clear
+  // where the page landed (Experience and Connect share one viewport).
+  const flashConnect = () => {
+    const section = document.getElementById("connect");
+    if (!section) return;
+    section.classList.remove("flash");
+    void section.offsetWidth; // restart the animation on repeat clicks
+    section.classList.add("flash");
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = (event.target as Element).closest('a[href$="#connect"]');
+    if (link) flashConnect();
+  });
+
+  if (location.hash === "#connect") flashConnect();
+</script>
 
 <style>
   /* Full-width noise band behind the hero frame. */
@@ -218,6 +237,7 @@ const links = [
     gap: 10px;
     margin-top: 28px;
   }
+
 
   /* Sit flush under the hero; overlap 1px so the two border rules merge. */
   .content {
