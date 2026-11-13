@@ -1,86 +1,93 @@
 ---
 name: portfolio-design
-description: Design system for this Astro portfolio (ishak.io) — layout, typography, spacing, color tokens, dither backgrounds, component patterns, and copy voice. Use when creating or editing any page, section, component, layout, CSS, theme, animation/background, or site copy in this repo, or when asked to "match the site", "make it look right", or restyle anything. Not for build config, CI, or non-visual logic.
+description: Design taste and system for this Astro portfolio (ishak.io) — the feel, layout, typography, color, texture, motion, component patterns, and copy voice. Use when creating or editing any page, section, component, layout, CSS, theme, animation/background, or site copy in this repo, or when asked to "match the site", "make it look right", or restyle anything. Not for build config, CI, or non-visual logic.
 ---
 
-# Portfolio design system
+# Portfolio design taste
 
-The site reads like a quiet engineering document: one narrow column, hairline rules, monospace metadata, serif statements, and one or two animated dither moments. Everything below protects that feel. When a case isn't covered, ask: *does this make the page calmer and more document-like, or louder and more like a landing page?* Choose calmer.
+This skill describes **how the site should feel and why**. It deliberately holds no pixel values, sizes, or timings. Those live in the code: tokens in `src/styles/global.css` (`:root` and `.dark`), and patterns in the components under `src/components/` and the pages under `src/pages/`. When you need a value, **read the existing code and reuse it**. Never invent a new number when a nearby pattern already has one.
 
-**Source of truth for values:** the `:root` and `.dark` blocks in `src/styles/global.css`. Read them before styling. Never hardcode a hex, font name, or color — use the custom properties. The reference page is `src/pages/index.astro`; copy its patterns before inventing new ones.
+## The feel
 
-## Core rules
+The site reads like a **quiet engineering document**: one narrow column, hairline rules, small monospace metadata, a serif voice for statements, and one or two living dither moments. It's calm, precise and a little playful, closer to a well-made README or a blueprint than to a landing page.
 
-### Layout
-- **Single centered column, `--column` (640px) wide, `--gutter` (24px) side padding.** Thin `--line` rails run down both sides of the column for the full page height. No multi-column grids, no full-bleed content sections — the narrow column is the identity.
-- Full width is allowed only for **background texture bands**: the hero's NoiseField band and the section separator bands. Content always stays inside the column.
-- The hero lives in a **bordered frame** with small square corner marks (the global `.corner .tl/.tr/.bl/.br` classes). Frames are for the hero or one special moment.
-- **Every content section starts with `<SectionHead label="…" />`** (`src/components/SectionHead.astro`). It's a full-width band with 1px `--line` rules top and bottom, dithercn's static `hatched` fill outside the column (lines, not noise: the user compared both and chose lines), the section title inside, and corner marks where the rules meet the rails. Content follows in a `.column.body` block. Don't use cards, boxes, or other dividers.
-- See [reference/patterns.md](reference/patterns.md) for exact spacing values and copy-ready markup.
+When something isn't covered here, ask: *does this make the page calmer and more document-like, or louder and more like a marketing site?* Choose calmer.
 
-### Typography — every font has one job
-| Role | Font var | Use for |
-|---|---|---|
-| Statement | `--font-serif` (Newsreader) | Hero sentences, rare large statements. Weight 400. |
-| Body | `--font-sans` (Inter) | All reading text, names, titles, and **section titles** (16px, 500, `--foreground`, sentence case). Weights 400 / 500 only. |
-| Meta | `--font-mono` (JetBrains Mono) | Dates, tags, badges, status line, footer, handles. Small, often uppercase with letter-spacing. Never for section titles: the tiny mono labels were unreadable. |
-| Accent | `--font-hand` (Caveat) | At most **one** short phrase per page, in `--primary`. |
+Influences, so you understand the intent:
+- A single framed column with ruled separator bands and corner marks (Vitor Lostada).
+- Serif statements, a changelog-style timeline, and mono labels with clear roles (Ben Moore).
+- A personal, first-person tone with inline links and one handwritten touch (Leo).
+- A dithered, pixel-textured hero moment (ParadeDB).
 
-Don't use the serif for UI or body text, the mono for paragraphs, or bold (600+) anywhere — hierarchy comes from font role, size, and `--muted`/`--faint` color, not weight. Base size is 15px / 1.6.
+## Principles
 
-### Color
-- Neutrals do almost all the work: `--foreground` for primary text, `--muted` for secondary text and descriptions, `--faint` for dates/meta, `--line` for every border and rule, `--surface` for rare filled chips.
-- `--primary` (violet) is the **only** accent and is scarce: the solid primary button, the "Latest" badge, the hand-written phrase, row hover, avatar initials, and dither ink. Never use it for large text, section backgrounds, or borders of content. The one filled exception is the solid `.button` (primary action).
-- Tints come from `color-mix(in oklch, var(--primary) 12–20%, transparent)` — no new color values.
-- **Don't add new colors or tokens** without asking. Any new token must be defined in both `:root` and `.dark`.
+### Layout: one column, framed
+- Everything lives in **one centered narrow column**, with thin vertical rails running down both sides for the whole page. There are no multi-column grids and no full-bleed content.
+- Full width is only for **background texture** around the column: the hero's noise band and the section separator bands.
+- Sections are separated by **ruled bands**, not cards or boxes. Each section opens with `SectionHead`: a full-width band with hairline rules, a texture outside the column, the title inside, and small square **corner marks** where the rules meet the rails.
+- Hairline rules stay **inside the rails**. Only the deliberate texture bands cross them.
+- The hero sits in a bordered frame. Frames are rare and reserved for the hero.
+- Keep the header slim and quiet, and never repeat what the hero says.
+
+### Typography: every font has one job
+- **Serif** carries statements: the hero intro and the line under it. It's never used for UI.
+- **Sans** carries everything you read: body text, names, titles and section titles.
+- **Mono** carries metadata: navigation, dates, roles, stats, badges, footer and handles. It's small, quiet and often uppercase. It's never used for paragraphs or section titles; tiny mono titles proved unreadable.
+- **Handwritten** appears exactly once on a page, as a short phrase in the accent color. Right now that's "curious by nature".
+- Hierarchy comes from **role, size and tone of gray**, never from heavy weights. Keep everything at regular or medium weight.
+
+### Color: neutrals do the work
+- Text uses a few steps of neutral (ink, muted, faint), and every border and rule uses the line color.
+- **Violet is the only accent, and it's scarce**: the primary button, the "Latest" badge, the handwritten phrase, hover states, project icons, and the dither ink. Never use it for large text, section backgrounds, or content borders.
+- Tints are mixes of existing tokens. **Never add new colors or tokens** without asking. Every token exists in both light and dark.
 
 ### Shape and depth
-- Square corners everywhere (`border-radius: 0`). The only round things are status dots and timeline nodes.
-- No drop shadows, gradients, or glassmorphism. The only "glow" is the accent dot halo (`box-shadow: 0 0 0 3px` tinted primary).
-- Borders are always `1px solid var(--line)`.
+- Everything is **square**. The only round things are dots and timeline nodes.
+- No shadows, gradients or glass effects. Depth comes from rules, frames and texture.
 
-### Rows, never card grids
-- **Projects** use `<ProjectRow project={…} />` (`src/components/ProjectRow.astro`). Each one is a row with a `--line` rule under it, only inside the column (never full width), plus corner marks. Inside the column it has a dithercn `Avatar` icon (square, `color="--primary"`, 44px), the name (16px/500), a muted description (14px), stats (★ stars, ↓ downloads; live GitHub/crates.io numbers fetched at build time by `src/lib/stats.ts`; stars under 50 hidden) right-aligned on the name line next to the ↗ arrow, and a mono role line underneath. Never show dates. The whole row is a link with a `--surface` hover. The home page shows `featuredProjects`, then a centered **View all projects** button linking to `/projects`.
-- **Experience** uses the changelog **timeline**. **Writing / Connect** use simple text rows: name, dim one-line description, right-aligned mono meta.
-- Never use card grids, rounded cards, or floating boxes. Project icons come from dithercn `Avatar`, not uploaded images, unless the user provides logos.
+### Texture: dithercn only
+- Every background, texture, noise or animated pixel effect comes from **dithercn** (https://dithercn.dev). **Never hand-roll** CSS patterns, noise or shaders. The user has asked for this explicitly.
+- Signature moments are **animated** dithercn components in the accent color, used sparingly. Right now that's the hero fire.
+- Quiet textures use the line color so they stay behind the content. The hero noise band is animated; the separator bands use the engine's **static** hatched fill, which needs no JavaScript. The user compared noise and lines for the separators and chose lines.
+- Project icons are dithercn's generated `Avatar`, not uploaded images, unless real logos are provided.
+- Keep animated canvases few, since each one costs a WebGL context. Prefer static fills for anything repeated.
+- How to add a component: [reference/dithercn.md](reference/dithercn.md).
 
-### Pages and shared pieces
-- Every page is `<Base>` → `<div class="rails">` → `<SiteHeader />` → content → `<SiteFooter />`. `.rails` and `.column` are global (`global.css`).
-- A sub-page starts with `<SectionHead label="…" backHref="/" />`, which renders the back arrow and makes the title the page's `h1`. See `src/pages/projects.astro`.
-- Content data lives in `src/data/` (e.g. `projects.ts`: array order is the display order, curated by the user — never re-sort it; `featured` flag). Pages import it and never hardcode lists.
-- **Buttons** (global `.button` in `global.css`): square, 13.5px/500 sans, `6px 14px` padding (~32px tall). `.button` = solid `--primary` (violet) with `--background` text for the primary action; `.button.ghost` = `--line` border on `--background` for the quiet second action. At most one solid button per section; pair it with at most one ghost. Hero actions: **Book a call** (cal.com/ishak, new tab) + **Send a message** (ghost, scrolls to `#connect`).
-- **Header** (`SiteHeader`): one slim line (30px padding, 12px mono). Left: the mono `ishak.io` wordmark (500, `--foreground`) linking home. Right: mono uppercase section links (`/#projects`, `/#work`, `/#connect`, root-relative so they work from sub-pages), then the theme toggle as a bare 16px icon (no box). Never repeat the name, title or avatar here, because the hero introduces me. Section navigation lives here, never as chips in the hero.
+### Motion: almost none
+- Motion belongs to the dither canvases. UI motion is limited to gentle hover color changes, plus a small sideways nudge on link rows.
+- One **arrival cue**: when a link jumps to Connect, its title box glows briefly with a violet dither so it's clear where you landed. Only the title box glows, never the content under it, and the title stays readable.
+- No scroll reveals, parallax or bouncing. Respect reduced-motion settings.
 
-### Dither backgrounds — dithercn only
-- All animated/texture backgrounds come from **dithercn** (https://dithercn.dev) components. **Never hand-roll** CSS hatching, noise, SVG patterns, or custom shaders — pick a dithercn component instead.
-- Currently used: `Fire` (hero, bottom of frame), `NoiseField` (the full-width band behind the hero, plus a thin strip), the engine's static `fillStyle("hatched", …)` (section separator bands), and `Avatar` (project icons). `Avatar` is static SVG, so render it in `.astro` with **no** `client:` directive (zero JS). Its rounded corners come from Tailwind classes we don't load, so it stays square. Installed files live in `src/components/dithercn/`, and the engine is in `src/lib/dither/`.
-- **Animated** components (WebGL canvases): always hydrate with `client:visible`, size them with `style` (height), and color them with tokens (`--dither-ink` = `--primary`; quiet textures use `color="--line"`). Keep it to about 3 canvases per page.
-- **Static** textures (repeated bands, fills): use `fillStyle()` from `@/lib/dither` as an inline style in `.astro`. It renders on the server with zero JS and doesn't count toward the canvas budget.
-- To add another component, follow [reference/dithercn.md](reference/dithercn.md).
+### Content patterns
+- **Rows, never card grids.** Projects are full rows with a generated icon, name, a one-sentence description, a role line, and traction stats (stars and downloads, fetched live at build time) aligned to one right edge with the link arrow. Never show dates on projects, and never show weak numbers; fall back to the language instead.
+- **Experience** is a changelog timeline, with the current role marked "Latest".
+- **Connect** is plain rows where the whole row is the link.
+- **Buttons** come in two styles: a solid violet primary and a quiet outlined secondary. Use at most one of each per section.
+- External links open in a new tab; email and on-site links don't.
+- Pattern intent and where each one lives: [reference/patterns.md](reference/patterns.md).
 
-### Motion
-Motion belongs to the dither canvases. UI motion is limited to 0.15s color / border-color / underline / background transitions on hover, plus one allowed movement: link rows (e.g. Connect) nudge `translateX(4px)` over 0.2s ease-out, disabled under `prefers-reduced-motion`. One arrival cue: when a link jumps to `#connect`, its **title box** flashes a violet dithercn `fillStyle("dotted")` glow (`<SectionHead glow />`; opacity 0 → 1 → 0 over 2s). A small script in `index.astro` adds the `.flash` class to the section. Only the title box glows, never the list under it. No scroll-triggered reveals, parallax, or bouncing.
-
-**Links:** external `http(s)` links open in a new tab (`target="_blank" rel="noopener noreferrer"`); `mailto:` and on-site links stay in the same tab.
+### Data, not hardcoded content
+- Lists live in `src/data/`, and pages import them. **The order in those files is the user's curated order. Never re-sort it.**
+- Unfinished sections (like Writing) are commented out with a `NOTE`, not deleted.
 
 ### Theme
-Light and dark are both first-class. Theme is the `.dark` class on `<html>`, toggled by the header button and persisted in `localStorage`. Every change must look right in both.
+Light and dark are both first-class, and every change must look right in both.
 
 ### Copy voice
-First person, plain, specific, short. What I'm building now, then "Before that: …". Concrete outcomes ("cut p95 latency by 60%") over adjectives ("passionate", "innovative"). See [reference/voice.md](reference/voice.md).
+First person, plain, specific and short, like talking to someone rather than reading a résumé. See [reference/voice.md](reference/voice.md).
 
 ### Tech constraints
-- Astro components with scoped `<style>` and plain CSS. **No Tailwind, no UI kits, no CSS-in-JS.** `src/lib/utils.ts` has a tiny `cn()` only because dithercn expects it.
-- React is used **only** for dithercn islands. Static markup stays `.astro` with zero client JS.
-- Ship only what's needed — don't add dependencies without asking.
+- Astro components with scoped styles and plain CSS. **No Tailwind, UI kits or CSS-in-JS.** A tiny `cn()` exists only because dithercn expects it.
+- React is used only for dithercn islands. Everything else ships zero client JavaScript.
+- Add dependencies only when they're truly needed, and ask first.
 
 ## Before finishing any UI work
-- [ ] Only tokens from `global.css` — no new hex, rgb, or font names
-- [ ] Content stays inside the 640px column; spacing matches [reference/patterns.md](reference/patterns.md)
-- [ ] Each font used only for its role; no weight above 500; hand font used at most once
-- [ ] `--primary` used only for small accents
-- [ ] Any background/texture is dithercn: an animated component with `client:visible`, or static `fillStyle()`
-- [ ] New sections start with `<SectionHead />`; new pages use `SiteHeader`, `SiteFooter` and data from `src/data/`
-- [ ] Checked in **both** light and dark, at desktop and ~390px phone width
-- [ ] Copy follows the voice rules
+- [ ] Values reused from `global.css` and existing components, with no new colors, fonts or one-off numbers
+- [ ] Content stays in the column; separators and frames follow the existing pattern
+- [ ] Each font used only for its role; one handwritten phrase per page; no heavy weights
+- [ ] Violet used only as a small accent
+- [ ] Any texture or animation comes from dithercn
+- [ ] Data comes from `src/data/` in the user's order
+- [ ] Checked in light and dark, on desktop and phone widths
+- [ ] Copy follows the voice
 - [ ] `pnpm check` passes; preview with `astro dev --background` (`astro dev stop` when done)

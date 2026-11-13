@@ -3,8 +3,9 @@
 The site talks like a person writing a short note, not like a product page.
 
 ## Rules
-- **First person, present tense.** "I build fast software…", not "Ishak is a passionate engineer who…".
-- **Introduce, then say what you're doing now.** The hero is a short first-person intro ("I'm Ishak, …" plus the one handwritten phrase), then a smaller muted serif line on what I do, then a separate 15px "Right now I'm …" note with real names linked inline (aisdk, Vercel, Turso, HelixDB). Names and links live in the small note, never in the big serif lines. Casual and direct, like talking to someone, never like a résumé.
+- **First person, present tense.** "I'm curious by nature, working across…", not "Ishak is a passionate engineer who…".
+- **Introduce, then say what you're doing now.** The hero opens with a short first-person intro, then a line on what I do and why, then a small "Right now I'm …" note with real names linked inline. Casual and direct, like talking to someone, never like a résumé.
+- **Avoid stacking "I".** Vary the openings so sentences don't all start the same way.
 - **Be specific.** Use names, numbers and outcomes: "50k+ monthly users", "500+ annotators", "70% faster releases".
 - **Keep it short.** One-line descriptions in lists. Summaries in the timeline are at most one sentence.
 - **Project names stay as their repo names** (`aisdk`, `helix-db`); descriptions are one plain sentence in sentence case ("Tree plugin for the OpenCode TUI.").
